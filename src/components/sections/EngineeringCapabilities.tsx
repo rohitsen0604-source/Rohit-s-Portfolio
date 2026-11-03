@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { engineeringCapabilities } from '@/data/capabilities';
 import {
@@ -21,7 +24,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export function EngineeringCapabilities() {
   return (
-    <section id="capabilities" className="py-28 relative border-b border-swiss-border">
+    <section id="capabilities" className="py-28 relative border-b border-swiss-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="05 // ARCHITECTURE"
@@ -34,9 +37,18 @@ export function EngineeringCapabilities() {
             const Icon = iconMap[capability.icon] || Layers;
 
             return (
-              <div
+              <motion.div
                 key={capability.id}
-                className="group p-8 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card hover:shadow-swiss-elevated transition-all duration-200 flex flex-col justify-between"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.55,
+                  delay: idx * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{ y: -3 }}
+                className="group p-8 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card hover:shadow-swiss-elevated transition-colors duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -71,7 +83,7 @@ export function EngineeringCapabilities() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

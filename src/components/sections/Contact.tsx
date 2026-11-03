@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { personalInfo } from '@/data/personalInfo';
 import { socialLinks } from '@/data/socialLinks';
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
 import { Button } from '@/components/ui/Button';
+import { Magnetic } from '@/components/ui/Magnetic';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -63,7 +65,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40">
+    <section id="contact" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="10 // COLLABORATE"
@@ -71,9 +73,24 @@ export function Contact() {
           subtitle="Whether you are architecting a high-throughput platform, integrating production AI models, or seeking engineering leadership, let's discuss your vision."
         />
 
+        {/* Minimal Swiss Expanding Orange Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="h-[2px] bg-swiss-orange w-24 mb-12 origin-left"
+        />
+
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Direct Links */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Direct Links with Staggered Directional Reveal */}
+          <motion.div
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 space-y-6"
+          >
             <div className="p-8 sm:p-9 bg-white border border-swiss-border shadow-swiss-card space-y-6">
               <div>
                 <h3 className="text-2xl font-display font-bold text-swiss-text tracking-tight mb-2 uppercase">
@@ -90,7 +107,7 @@ export function Contact() {
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 bg-swiss-surface border border-swiss-border hover:border-swiss-orange transition-colors group"
+                  className="flex items-center justify-between p-4 bg-swiss-surface border border-swiss-border hover:border-swiss-orange transition-all duration-200 group active:scale-[0.99]"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange group-hover:border-swiss-orange transition-all">
@@ -105,7 +122,7 @@ export function Contact() {
                       </span>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
 
                 {/* GitHub */}
@@ -113,7 +130,7 @@ export function Contact() {
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 bg-swiss-surface border border-swiss-border hover:border-swiss-orange transition-colors group"
+                  className="flex items-center justify-between p-4 bg-swiss-surface border border-swiss-border hover:border-swiss-orange transition-all duration-200 group active:scale-[0.99]"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange group-hover:border-swiss-orange transition-all">
@@ -128,7 +145,7 @@ export function Contact() {
                       </span>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
 
                 {/* Email (Configurable) */}
@@ -170,10 +187,16 @@ export function Contact() {
                 <span>Response SLA: Within 24 business hours</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Contact Form */}
-          <div className="lg:col-span-7">
+          {/* Right Column: Interactive Form with Directional Slide */}
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7"
+          >
             <div className="p-8 sm:p-10 bg-white border border-swiss-border shadow-swiss-card">
               <h3 className="text-2xl font-display font-bold text-swiss-text tracking-tight mb-2 uppercase">
                 Send a Structured Message
@@ -267,20 +290,22 @@ export function Contact() {
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="lg"
-                    disabled={status === 'submitting'}
-                    className="w-full justify-center"
-                    icon={<Send className="w-4 h-4" />}
-                  >
-                    {status === 'submitting' ? 'Transmitting Inquiries...' : 'Transmit Message'}
-                  </Button>
+                  <Magnetic strength={0.2}>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      size="lg"
+                      disabled={status === 'submitting'}
+                      className="w-full justify-center"
+                      icon={<Send className="w-4 h-4" />}
+                    >
+                      {status === 'submitting' ? 'Transmitting Inquiries...' : 'Transmit Message'}
+                    </Button>
+                  </Magnetic>
                 </form>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

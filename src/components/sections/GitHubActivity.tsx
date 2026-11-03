@@ -1,16 +1,18 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { githubHighlights, developmentStats } from '@/data/githubActivity';
 import { socialLinks } from '@/data/socialLinks';
 import { GithubIcon } from '@/components/ui/Icons';
 import { Button } from '@/components/ui/Button';
+import { Magnetic } from '@/components/ui/Magnetic';
 import { ArrowUpRight } from 'lucide-react';
 
 export function GitHubActivity() {
   return (
-    <section className="py-28 relative border-b border-swiss-border">
+    <section className="py-28 relative border-b border-swiss-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="09 // CODE REPOSITORIES"
@@ -20,46 +22,79 @@ export function GitHubActivity() {
 
         {/* Development Metrics Overview */}
         <div className="max-w-4xl mx-auto mb-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="p-6 bg-white border border-swiss-border shadow-swiss-card"
+          >
             <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
               ACTIVE REPOSITORIES
             </span>
             <p className="text-2xl font-display font-bold text-swiss-text">
               {developmentStats.activeRepositories}
             </p>
-          </div>
-          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="p-6 bg-white border border-swiss-border shadow-swiss-card"
+          >
             <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
               PRIMARY STACK
             </span>
             <p className="text-sm font-display font-bold text-swiss-text uppercase">
               Python &amp; TypeScript
             </p>
-          </div>
-          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.16 }}
+            className="p-6 bg-white border border-swiss-border shadow-swiss-card"
+          >
             <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
               ENGINEERING FOCUS
             </span>
             <p className="text-xs font-mono font-bold text-swiss-text uppercase">
               {developmentStats.weeklyCommitFocus}
             </p>
-          </div>
-          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.24 }}
+            className="p-6 bg-white border border-swiss-border shadow-swiss-card"
+          >
             <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
               CODE STANDARDS
             </span>
             <p className="text-xs font-mono text-swiss-text uppercase">
               CI/CD &amp; Strict Types
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* GitHub Highlight Cards */}
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {githubHighlights.map((item) => (
-            <div
+          {githubHighlights.map((item, idx) => (
+            <motion.div
               key={item.title}
-              className="p-7 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-all duration-200 flex flex-col justify-between group"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.55,
+                delay: idx * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ y: -3 }}
+              className="p-7 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-colors duration-200 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -105,21 +140,23 @@ export function GitHubActivity() {
                   <span className="text-swiss-muted text-[10px] uppercase">Source Code</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* CTA to GitHub */}
         <div className="max-w-4xl mx-auto text-center">
-          <Button
-            href={socialLinks.github}
-            isExternal
-            variant="outline"
-            size="md"
-            icon={<ArrowUpRight className="w-4 h-4" />}
-          >
-            Explore Repositories on GitHub (@rohitsen0604-source)
-          </Button>
+          <Magnetic strength={0.25} className="inline-block">
+            <Button
+              href={socialLinks.github}
+              isExternal
+              variant="outline"
+              size="md"
+              icon={<ArrowUpRight className="w-4 h-4" />}
+            >
+              Explore Repositories on GitHub (@rohitsen0604-source)
+            </Button>
+          </Magnetic>
         </div>
       </div>
     </section>

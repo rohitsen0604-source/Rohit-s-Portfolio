@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { professionalAchievements } from '@/data/achievements';
 import { Trophy, CheckCircle2 } from 'lucide-react';
@@ -6,7 +9,7 @@ import { Badge } from '@/components/ui/Badge';
 
 export function ProfessionalAchievements() {
   return (
-    <section className="py-28 relative border-b border-swiss-border bg-swiss-surface/40">
+    <section className="py-28 relative border-b border-swiss-border bg-swiss-surface/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="08 // MILESTONES"
@@ -15,10 +18,19 @@ export function ProfessionalAchievements() {
         />
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          {professionalAchievements.map((item) => (
-            <div
+          {professionalAchievements.map((item, idx) => (
+            <motion.div
               key={item.id}
-              className="p-8 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-all duration-200 flex flex-col justify-between group"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.55,
+                delay: idx * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ y: -3 }}
+              className="p-8 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-colors duration-200 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -51,7 +63,7 @@ export function ProfessionalAchievements() {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

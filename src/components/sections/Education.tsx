@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { educationList } from '@/data/education';
 import { GraduationCap } from 'lucide-react';
@@ -6,7 +9,7 @@ import { Badge } from '@/components/ui/Badge';
 
 export function Education() {
   return (
-    <section id="education" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40">
+    <section id="education" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="06 // ACADEMICS"
@@ -15,10 +18,19 @@ export function Education() {
         />
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          {educationList.map((edu) => (
-            <div
+          {educationList.map((edu, idx) => (
+            <motion.div
               key={edu.id}
-              className="p-8 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-all duration-200 flex flex-col justify-between group"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.6,
+                delay: idx * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ y: -3 }}
+              className="p-8 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-colors duration-200 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -47,7 +59,7 @@ export function Education() {
                 <span>ACADEMIC QUALIFICATION</span>
                 <span className="text-swiss-text font-bold">{edu.duration}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -4,6 +4,8 @@ import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { PageIntro } from '@/components/ui/PageIntro';
+import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -83,13 +85,16 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-swiss-bg text-swiss-text font-sans antialiased selection:bg-swiss-orange selection:text-white">
-        <CustomCursor />
-        <Navbar />
-        <main id="main-content" className="relative z-10">
-          {children}
-        </main>
-        <Footer />
+      <body className="min-h-screen bg-swiss-bg text-swiss-text font-sans antialiased selection:bg-swiss-orange selection:text-white overflow-x-hidden">
+        <SmoothScrollProvider>
+          <PageIntro />
+          <CustomCursor />
+          <Navbar />
+          <main id="main-content" className="relative z-10">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

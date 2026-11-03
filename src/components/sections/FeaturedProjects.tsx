@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { featuredProjects } from '@/data/projects';
 import { Badge } from '@/components/ui/Badge';
+import { Magnetic } from '@/components/ui/Magnetic';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -40,7 +42,7 @@ export function FeaturedProjects() {
           subtitle="Real-world distributed systems, mobility dispatch engines, applied AI workflows, and data pipelines engineered for enterprise scalability."
         />
 
-        {/* Filter Bar */}
+        {/* Filter Bar with Magnetic Tabs */}
         <div className="flex flex-wrap items-center gap-2 mb-14">
           {categories.map((cat) => (
             <button
@@ -57,18 +59,27 @@ export function FeaturedProjects() {
           ))}
         </div>
 
-        {/* Asymmetric Project Cards Grid */}
+        {/* Asymmetric Project Cards Grid with Directional Entrance */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           {filtered.map((project, index) => {
             const isOngoing = project.status === 'In Active Development';
+            const isEven = index % 2 === 0;
 
             return (
-              <div
+              <motion.div
                 key={project.id}
-                className="group p-7 sm:p-9 bg-white border border-swiss-border hover:border-swiss-orange transition-all duration-300 shadow-swiss-card hover:shadow-swiss-elevated flex flex-col justify-between"
+                initial={{ opacity: 0, x: isEven ? -30 : 30, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="group p-7 sm:p-9 bg-white border border-swiss-border hover:border-swiss-orange transition-colors duration-300 shadow-swiss-card hover:shadow-swiss-elevated flex flex-col justify-between overflow-hidden"
               >
                 <div>
-                  {/* Large Visual Area / Architectural Schematic Header */}
+                  {/* Large Visual Area / Clip-Path Mask Schematic Header */}
                   <div className="relative w-full h-56 sm:h-64 bg-swiss-surface border border-swiss-border mb-7 overflow-hidden flex flex-col justify-between p-5 group-hover:border-swiss-orange/40 transition-colors">
                     {/* Architectural Grid Lines */}
                     <div className="absolute inset-0 bg-swiss-grid opacity-40 pointer-events-none" />
@@ -83,8 +94,8 @@ export function FeaturedProjects() {
                       </Badge>
                     </div>
 
-                    {/* Application-Specific Schematic Blueprint */}
-                    <div className="relative my-auto py-2 z-10 transition-transform duration-300 group-hover:scale-[1.02]">
+                    {/* Application-Specific Schematic Blueprint with Smooth Zoom */}
+                    <div className="relative my-auto py-2 z-10 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
                       {project.id === 'neurohr-ai' && (
                         <div className="p-4 bg-white border border-swiss-border shadow-sm space-y-2">
                           <div className="flex items-center justify-between text-xs font-mono text-swiss-orange font-bold">
@@ -94,7 +105,13 @@ export function FeaturedProjects() {
                             <span className="text-swiss-muted text-[10px]">Gemini API</span>
                           </div>
                           <div className="h-1.5 w-full bg-swiss-surface overflow-hidden">
-                            <div className="h-full bg-swiss-orange w-4/5" />
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: '80%' }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 1, delay: 0.2 }}
+                              className="h-full bg-swiss-orange"
+                            />
                           </div>
                           <div className="flex justify-between text-[10px] font-mono text-swiss-muted uppercase">
                             <span>Vector Similarity: 0.942</span>
@@ -163,13 +180,13 @@ export function FeaturedProjects() {
                     <div className="relative flex items-center justify-between text-[10px] font-mono text-swiss-muted z-10 pt-2 border-t border-swiss-border">
                       <span className="uppercase">CATEGORY // {project.category}</span>
                       <span className="text-swiss-orange font-bold flex items-center gap-1 uppercase">
-                        View System Specs <ArrowUpRight className="w-3 h-3" />
+                        View System Specs <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>
                     </div>
                   </div>
 
-                  {/* Title & Tagline */}
-                  <h3 className="text-2xl sm:text-3xl font-display font-bold text-swiss-text tracking-tight group-hover:text-swiss-orange transition-colors uppercase">
+                  {/* Title & Tagline with Smooth Shift */}
+                  <h3 className="text-2xl sm:text-3xl font-display font-bold text-swiss-text tracking-tight group-hover:text-swiss-orange transition-all duration-300 uppercase group-hover:translate-x-1">
                     {project.title}
                   </h3>
                   <p className="text-xs font-mono text-swiss-orange mt-1 mb-3.5 font-bold uppercase">
@@ -209,20 +226,22 @@ export function FeaturedProjects() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-display font-bold text-swiss-orange hover:text-swiss-orange-hover transition-colors group-hover:translate-x-1 duration-200 uppercase tracking-wider"
-                    >
-                      <span>View Full Case Study</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    <Magnetic strength={0.3}>
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="inline-flex items-center gap-2 text-xs sm:text-sm font-display font-bold text-swiss-orange hover:text-swiss-orange-hover transition-colors uppercase tracking-wider py-1"
+                      >
+                        <span>View Full Case Study</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Magnetic>
 
                     <span className="text-[10px] font-mono text-swiss-muted uppercase">
                       Architecture Dossier
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

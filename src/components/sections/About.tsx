@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { personalInfo } from '@/data/personalInfo';
 import { ArrowUpRight } from 'lucide-react';
@@ -33,7 +36,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40">
+    <section id="about" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="01 // PROFILE"
@@ -42,8 +45,14 @@ export function About() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Authentic Professional Introduction */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Authentic Professional Introduction with Scroll Reveal */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 space-y-6"
+          >
             <div className="p-8 sm:p-10 bg-white border border-swiss-border shadow-swiss-card space-y-5">
               <span className="text-xs font-mono uppercase tracking-widest text-swiss-orange font-bold block">
                 BACKGROUND
@@ -72,9 +81,9 @@ export function About() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Focus Areas */}
+          {/* Right Column: Focus Areas with Staggered Directional Reveal */}
           <div className="lg:col-span-7 space-y-3.5">
             <div className="mb-2">
               <span className="text-xs font-mono uppercase tracking-widest text-swiss-muted font-bold">
@@ -83,16 +92,25 @@ export function About() {
             </div>
 
             <div className="grid grid-cols-1 gap-3.5">
-              {focusAreas.map((area) => (
-                <div
+              {focusAreas.map((area, idx) => (
+                <motion.div
                   key={area.num}
-                  className="group p-6 sm:p-7 bg-white border border-swiss-border hover:border-swiss-orange transition-all duration-200 shadow-swiss-card"
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.55,
+                    delay: idx * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  whileHover={{ y: -2 }}
+                  className="group p-6 sm:p-7 bg-white border border-swiss-border hover:border-swiss-orange transition-colors duration-200 shadow-swiss-card cursor-default"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <span className="text-xs font-mono text-swiss-orange font-bold px-2 py-0.5 bg-swiss-orange-light border border-swiss-orange-border">
                       {area.num}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-colors" />
+                    <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
 
                   <h4 className="text-lg font-display font-bold text-swiss-text group-hover:text-swiss-orange transition-colors mt-3 mb-1.5 uppercase">
@@ -101,7 +119,7 @@ export function About() {
                   <p className="text-sm text-swiss-muted leading-relaxed font-sans">
                     {area.desc}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

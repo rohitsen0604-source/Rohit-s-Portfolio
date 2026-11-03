@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { experienceCompanies } from '@/data/experience';
 import { Badge } from '@/components/ui/Badge';
@@ -14,6 +15,19 @@ import {
 } from 'lucide-react';
 
 export function Experience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 80%', 'end 50%'],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
   const [expandedRoles, setExpandedRoles] = useState<Record<string, boolean>>({
     'black-grapes-softech-0': true,
     'zenvora-pvt-ltd-0': true,
@@ -37,26 +51,44 @@ export function Experience() {
           subtitle="Verifiable track record in engineering leadership, backend microservices, software architecture, and production AI/ML systems."
         />
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical central timeline connecting line in #D8D3C8 */}
+        <div ref={containerRef} className="relative max-w-4xl mx-auto">
+          {/* Static Background Guideline in #D8D3C8 */}
           <div
             className="absolute left-4 md:left-8 top-6 bottom-6 w-px bg-swiss-border pointer-events-none"
             aria-hidden="true"
           />
 
+          {/* Animated Progressive Timeline Draw in #E76F3C */}
+          <motion.div
+            style={{ scaleY, transformOrigin: 'top' }}
+            className="absolute left-4 md:left-8 top-6 bottom-6 w-px bg-swiss-orange pointer-events-none z-0"
+            aria-hidden="true"
+          />
+
           <div className="space-y-10">
-            {experienceCompanies.map((company) => {
+            {experienceCompanies.map((company, cIndex) => {
               const isGrouped = company.displayGrouped && company.roles.length > 1;
 
               return (
-                <div key={company.id} className="relative pl-12 md:pl-20 group">
+                <motion.div
+                  key={company.id}
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.65,
+                    delay: cIndex * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="relative pl-12 md:pl-20 group"
+                >
                   {/* Subtle Orange Timeline Marker */}
                   <div className="absolute left-1.5 md:left-5 top-2 -translate-x-1/2 w-8 h-8 bg-white border-2 border-swiss-border group-hover:border-swiss-orange flex items-center justify-center text-swiss-orange text-[11px] font-mono font-bold transition-all z-10 shadow-sm">
                     {company.companyLogoPlaceholder || 'EXP'}
                   </div>
 
-                  {/* Company Box */}
-                  <div className="p-6 md:p-8 bg-white border border-swiss-border hover:border-swiss-orange transition-all duration-200 shadow-swiss-card">
+                  {/* Company Box with Smooth Hover Scaling */}
+                  <div className="p-6 md:p-8 bg-white border border-swiss-border hover:border-swiss-orange transition-all duration-300 shadow-swiss-card">
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-swiss-border">
                       <div>
@@ -128,7 +160,7 @@ export function Experience() {
                               {(role.responsibilities || role.description) && (
                                 <button
                                   onClick={() => toggleRole(roleKey)}
-                                  className="inline-flex items-center gap-1 text-xs font-mono font-bold text-swiss-muted hover:text-swiss-orange transition-colors self-start md:self-auto py-1 px-2.5 bg-swiss-surface border border-swiss-border uppercase"
+                                  className="inline-flex items-center gap-1 text-xs font-mono font-bold text-swiss-muted hover:text-swiss-orange transition-colors self-start md:self-auto py-1 px-2.5 bg-swiss-surface border border-swiss-border uppercase active:scale-95"
                                 >
                                   <span>{isExpanded ? 'Collapse' : 'Details'}</span>
                                   {isExpanded ? (
@@ -147,9 +179,15 @@ export function Experience() {
                               </p>
                             )}
 
-                            {/* Expandable Key Responsibilities */}
+                            {/* Expandable Key Responsibilities with Smooth Reveal */}
                             {isExpanded && (
-                              <div className="mt-4 pt-4 border-t border-swiss-border space-y-4 animate-in fade-in duration-200">
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="mt-4 pt-4 border-t border-swiss-border space-y-4"
+                              >
                                 {role.responsibilities && role.responsibilities.length > 0 && (
                                   <div>
                                     <span className="text-xs font-mono uppercase tracking-wider text-swiss-text font-bold mb-2.5 block">
@@ -186,7 +224,7 @@ export function Experience() {
                                     </div>
                                   </div>
                                 )}
-                              </div>
+                              </motion.div>
                             )}
 
                             {/* Skills Tags */}
@@ -207,7 +245,7 @@ export function Experience() {
                       })}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
