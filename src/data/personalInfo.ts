@@ -26,3 +26,4 @@ export const personalInfo: PersonalInfo = {
     resume: 'Download Resume',
   },
 };
+

@@ -8,3 +8,4 @@ export const socialLinks: SocialLinks = {
   // Configurable email address placeholder
   email: 'contact@rohitsen.dev',
 };
+

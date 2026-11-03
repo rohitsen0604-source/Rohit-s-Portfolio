@@ -116,3 +116,4 @@ export interface SocialLinks {
   email: string;
   twitter?: string;
 }
+

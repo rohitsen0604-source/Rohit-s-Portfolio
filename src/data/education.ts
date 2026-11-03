@@ -20,3 +20,4 @@ export const educationList: EducationItem[] = [
     highlight: false,
   },
 ];
+

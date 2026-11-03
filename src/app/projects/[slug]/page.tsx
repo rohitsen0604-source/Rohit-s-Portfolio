@@ -210,3 +210,4 @@ export default async function ProjectDetailPage({ params }: Props) {
     </div>
   );
 }
+
