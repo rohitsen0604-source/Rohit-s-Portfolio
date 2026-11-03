@@ -8,7 +8,6 @@ export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only enable on desktop with fine pointer
     if (typeof window === 'undefined') return;
     const mediaQuery = window.matchMedia('(pointer: fine) and (min-width: 1024px)');
     if (!mediaQuery.matches) return;
@@ -65,13 +64,12 @@ export function CustomCursor() {
       <div
         className={`-translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-200 ${
           isPointer
-            ? 'w-10 h-10 border-emerald-400 bg-emerald-400/10 scale-125'
-            : 'w-6 h-6 border-emerald-500/40 bg-transparent'
+            ? 'w-11 h-11 border-accent bg-accent/10 scale-125'
+            : 'w-7 h-7 border-accent/40 bg-transparent'
         }`}
       />
-      {/* Inner tiny dot */}
-      <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_#10B981]" />
+      {/* Inner precision dot */}
+      <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_10px_#D7FF72]" />
     </div>
   );
 }
-

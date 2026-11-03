@@ -20,27 +20,26 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        'max-w-3xl mb-12 md:mb-16',
+        'max-w-4xl mb-14 md:mb-20',
         centered ? 'mx-auto text-center' : '',
         className
       )}
     >
       {badge && (
-        <div className={cn('mb-3.5', centered ? 'flex justify-center' : '')}>
-          <Badge variant="emerald" dot size="sm">
+        <div className={cn('mb-4', centered ? 'flex justify-center' : '')}>
+          <Badge variant="accent" dot size="sm">
             {badge}
           </Badge>
         </div>
       )}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-[-0.03em] text-editorial-primary leading-[1.08]">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base md:text-lg text-neutral-400 leading-relaxed font-normal">
+        <p className="mt-5 text-base sm:text-lg md:text-xl text-editorial-secondary leading-relaxed font-sans max-w-2xl">
           {subtitle}
         </p>
       )}
     </div>
   );
 }
-

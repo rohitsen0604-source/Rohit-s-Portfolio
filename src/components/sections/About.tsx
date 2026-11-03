@@ -1,106 +1,109 @@
 import React from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { personalInfo } from '@/data/personalInfo';
-import { Layers, Cpu, Server, ShieldCheck, Database, Cloud, Terminal, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export function About() {
-  const pillars = [
+  const principles = [
     {
-      title: 'Full-Stack Software Development',
-      desc: 'Crafting responsive, high-performance web applications with Next.js, React, and modern TypeScript frameworks.',
-      icon: Layers,
+      num: '01',
+      title: 'Architectural Scalability & System Resiliency',
+      desc: 'Designing asynchronous microservices, event loops, and database architectures optimized for low-latency throughput and zero single points of failure.',
     },
     {
-      title: 'AI & Machine Learning Engineering',
-      desc: 'Integrating practical machine learning, deep learning, NLP, and RAG architectures into production software.',
-      icon: Cpu,
+      num: '02',
+      title: 'Applied AI & Production RAG Pipelines',
+      desc: 'Operationalizing large language models, semantic vector indexing with ChromaDB, and LangChain orchestration to deliver grounded, measurable enterprise utility.',
     },
     {
-      title: 'Backend Engineering & APIs',
-      desc: 'Architecting resilient backend microservices, high-concurrency RESTful APIs, and asynchronous message queues.',
-      icon: Server,
+      num: '03',
+      title: 'Full-Stack Precision & Design Fidelity',
+      desc: 'Bridging modern frontends (Next.js, TypeScript) with robust backend endpoints (FastAPI, Node.js), ensuring type safety, strict input validation, and fluid interactions.',
     },
     {
-      title: 'Software & Data Architecture',
-      desc: 'Designing normalized SQL schemas, NoSQL document stores, caching layers, and decoupled system topologies.',
-      icon: Database,
-    },
-    {
-      title: 'Cloud & DevOps Infrastructure',
-      desc: 'Implementing containerized Docker workloads, automated CI/CD deployment pipelines, and cloud environments.',
-      icon: Cloud,
-    },
-    {
-      title: 'Technical Problem Solving & Leadership',
-      desc: 'Translating business requirements into structured engineering specifications, code reviews, and dependable delivery.',
-      icon: ShieldCheck,
+      num: '04',
+      title: 'Technical Leadership & Engineering Rigor',
+      desc: 'Mentoring engineering teams, setting code quality benchmarks, designing continuous delivery pipelines, and translating business goals into robust software specs.',
     },
   ];
 
   return (
-    <section id="about" className="py-24 relative border-t border-white/[0.06] bg-neutral-950/40">
+    <section id="about" className="py-28 relative border-b border-canvas-border bg-canvas-secondary/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="About Me"
-          title="Bridging Algorithmic Intelligence & Scalable Engineering"
-          subtitle="A disciplined software engineer focused on building durable digital products, production AI systems, and high-performance backend architectures."
+          badge="About The Engineer"
+          title="Beyond Code. Building What Matters."
+          subtitle="Engineering resilient distributed systems, production AI intelligence, and modern digital products by combining deep technical rigor with practical product sense."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Narrative Column */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="p-8 rounded-2xl bg-surface border border-white/[0.08] shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-bl-full pointer-events-none" />
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-4">
-                <Terminal className="w-4 h-4" />
-                <span>Engineering Philosophy</span>
-              </div>
-              <div className="space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Professional Narrative */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="p-8 sm:p-10 rounded-2xl bg-canvas-card border border-canvas-border space-y-5 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full pointer-events-none" />
+
+              <span className="text-xs font-mono uppercase tracking-widest text-accent font-semibold block">
+                Professional Positioning
+              </span>
+
+              <h3 className="text-2xl font-display font-bold text-editorial-primary tracking-tight">
+                Software Engineer • Full-Stack Developer • AI/ML Engineer • Software Architect
+              </h3>
+
+              <div className="space-y-4 text-editorial-secondary text-sm sm:text-base leading-relaxed font-sans">
                 {personalInfo.bio.map((paragraph, idx) => (
-                  <p key={idx} className="text-neutral-300">
+                  <p key={idx} className="leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
               </div>
 
-              <div className="mt-6 pt-6 border-t border-white/[0.08] grid grid-cols-2 gap-4 text-xs font-mono">
+              <div className="pt-6 border-t border-white/10 grid grid-cols-2 gap-4 text-xs font-mono">
                 <div>
-                  <span className="text-neutral-500 block">Current Focus</span>
-                  <span className="text-white font-medium">Distributed Systems & AI RAG</span>
+                  <span className="text-editorial-muted block uppercase text-[10px]">Current Post</span>
+                  <span className="text-editorial-primary font-medium">Lead Software Developer</span>
                 </div>
                 <div>
-                  <span className="text-neutral-500 block">Primary Location</span>
-                  <span className="text-white font-medium">Indore, MP, India</span>
+                  <span className="text-editorial-muted block uppercase text-[10px]">Headquarters</span>
+                  <span className="text-editorial-primary font-medium">Indore, MP, India</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Core Competency Grid */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {pillars.map((pillar) => {
-              const Icon = pillar.icon;
-              return (
+          {/* Right Column: Editorial Engineering Principles (Not generic icons) */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="mb-4">
+              <span className="text-xs font-mono uppercase tracking-widest text-editorial-muted">
+                Core Engineering Pillars
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4">
+              {principles.map((p) => (
                 <div
-                  key={pillar.title}
-                  className="p-5 rounded-xl bg-surface-elevated/60 border border-white/[0.06] hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-0.5 group"
+                  key={p.num}
+                  className="group p-6 sm:p-7 rounded-2xl bg-canvas-card border border-canvas-border hover:border-accent/35 transition-all duration-300 hover:-translate-y-0.5"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-surface border border-white/10 flex items-center justify-center text-emerald-400 mb-3.5 group-hover:scale-105 group-hover:shadow-glow-emerald transition-all">
-                    <Icon className="w-4 h-4" />
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="text-xs font-mono text-accent font-bold px-2 py-0.5 rounded bg-accent/10 border border-accent/20">
+                      {p.num}
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-editorial-muted group-hover:text-accent transition-colors" />
                   </div>
-                  <h3 className="text-sm font-semibold text-white tracking-tight mb-1.5 group-hover:text-emerald-300 transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
-                    {pillar.desc}
+
+                  <h4 className="text-lg font-display font-bold text-editorial-primary group-hover:text-accent transition-colors mt-3 mb-2">
+                    {p.title}
+                  </h4>
+                  <p className="text-sm text-editorial-secondary leading-relaxed font-sans">
+                    {p.desc}
                   </p>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-

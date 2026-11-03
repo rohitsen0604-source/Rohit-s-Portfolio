@@ -2,40 +2,39 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, ArrowUpRight, Terminal } from 'lucide-react';
-import { personalInfo } from '@/data/personalInfo';
+import { ArrowUpRight, Menu, X, FileText, Send } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 
-const navLinks = [
+const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Expertise', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Capabilities', href: '#capabilities' },
-  { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 25);
 
-      // Section spy
-      const sections = navLinks.map((link) => link.href.substring(1));
-      const scrollPosition = window.scrollY + 120;
+      const sections = ['about', 'experience', 'skills', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.offsetTop <= scrollPosition) {
           setActiveSection(sections[i]);
-          break;
+          return;
         }
+      }
+      if (window.scrollY < 200) {
+        setActiveSection('hero');
       }
     };
 
@@ -44,127 +43,161 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [mobileMenuOpen]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled
-          ? 'py-3 bg-neutral-950/80 backdrop-blur-xl border-b border-white/[0.08] shadow-lg shadow-black/40'
-          : 'py-5 bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 group cursor-pointer"
-            aria-label="Rohit Sen - Home"
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled ? 'py-3.5' : 'py-5'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className={`flex items-center justify-between px-5 py-2.5 rounded-full transition-all duration-300 ${
+              isScrolled
+                ? 'bg-[#121512]/85 backdrop-blur-xl border border-white/10 shadow-card-dark'
+                : 'bg-transparent border border-transparent'
+            }`}
           >
-            <div className="w-9 h-9 rounded-lg bg-surface-elevated border border-white/10 flex items-center justify-center text-brand-emerald group-hover:border-emerald-500/50 group-hover:shadow-glow-emerald transition-all duration-300">
-              <Terminal className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-sm tracking-tight text-white group-hover:text-emerald-400 transition-colors">
-                {personalInfo.name}
+            {/* Left: Brand Identity */}
+            <Link
+              href="/"
+              className="flex items-center gap-2 group cursor-pointer select-none"
+              aria-label="Rohit Sen - Home"
+            >
+              <span className="font-display font-bold text-base md:text-lg tracking-tight text-editorial-primary group-hover:text-accent transition-colors">
+                ROHIT SEN<span className="text-accent">.</span>
               </span>
-              <span className="text-[11px] text-neutral-400 font-mono tracking-wider uppercase">
+              <span className="hidden xl:inline-block text-[10px] font-mono uppercase tracking-widest text-editorial-secondary border-l border-white/10 pl-2.5 ml-1">
                 Lead Software Engineer
               </span>
-            </div>
-          </Link>
+            </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-surface-elevated/70 border border-white/[0.06] px-3 py-1.5 rounded-full backdrop-blur-md">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
-                    isActive
-                      ? 'text-white bg-white/10 shadow-sm'
-                      : 'text-neutral-400 hover:text-white hover:bg-white/[0.04]'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </nav>
+            {/* Desktop Navigation Links */}
+            <nav className="hidden lg:flex items-center gap-1 bg-[#171A18]/80 border border-white/10 px-2 py-1 rounded-full backdrop-blur-md">
+              {navItems.map((item) => {
+                const targetId = item.href.substring(1);
+                const isActive = activeSection === targetId;
 
-          {/* Right Action & Availability */}
-          <div className="hidden sm:flex items-center gap-3">
-            <Badge variant="emerald" dot size="sm" className="hidden xl:inline-flex">
-              Available for projects
-            </Badge>
-            <Button
-              href="#contact"
-              variant="primary"
-              size="sm"
-              icon={<ArrowUpRight className="w-3.5 h-3.5" />}
-            >
-              Get in Touch
-            </Button>
-          </div>
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`relative px-4 py-1.5 text-xs font-mono tracking-wider uppercase transition-all duration-200 rounded-full ${
+                      isActive
+                        ? 'text-accent bg-accent/10 font-medium'
+                        : 'text-editorial-secondary hover:text-editorial-primary hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+            </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg bg-surface border border-white/10 text-neutral-300 hover:text-white lg:hidden focus:outline-none"
-            aria-label="Toggle Navigation Menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Dropdown Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-neutral-950/95 backdrop-blur-2xl border-b border-white/10 px-4 pt-4 pb-6 mt-3 space-y-3 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="flex items-center justify-between pb-3 border-b border-white/10">
-            <span className="text-xs uppercase font-mono tracking-widest text-neutral-400">
-              Navigation
-            </span>
-            <Badge variant="emerald" dot size="sm">
-              Available for projects
-            </Badge>
-          </div>
-          <div className="grid grid-cols-2 gap-2 pt-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 text-sm text-neutral-300 hover:text-emerald-400 hover:bg-white/[0.04] rounded-lg transition-colors"
+            {/* Right: CTAs */}
+            <div className="hidden md:flex items-center gap-2.5">
+              <Button
+                href="#contact"
+                variant="outline"
+                size="sm"
+                icon={<FileText className="w-3.5 h-3.5" />}
               >
-                {link.label}
+                Resume
+              </Button>
+              <Button
+                href="#contact"
+                variant="primary"
+                size="sm"
+                icon={<ArrowUpRight className="w-3.5 h-3.5" />}
+              >
+                Let&apos;s Talk
+              </Button>
+            </div>
+
+            {/* Mobile Hamburger Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2.5 rounded-full bg-canvas-card border border-white/10 text-editorial-primary hover:text-accent lg:hidden focus:outline-none"
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Elegant Fullscreen Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-[#0B0C0B]/98 backdrop-blur-2xl flex flex-col justify-between px-6 py-8 animate-in fade-in duration-300">
+          <div className="flex items-center justify-between border-b border-white/10 pb-5">
+            <span className="font-display font-bold text-xl text-editorial-primary">
+              ROHIT SEN<span className="text-accent">.</span>
+            </span>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 rounded-full border border-white/10 text-editorial-primary hover:text-accent"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <nav className="flex flex-col space-y-4 my-auto">
+            <span className="text-xs font-mono uppercase tracking-widest text-editorial-muted">
+              Directory
+            </span>
+            {navItems.map((item, index) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="group flex items-center justify-between text-2xl sm:text-3xl font-display font-bold text-editorial-primary hover:text-accent transition-colors py-1"
+              >
+                <span>{item.label}</span>
+                <span className="text-xs font-mono text-editorial-muted group-hover:text-accent">
+                  0{index + 1}
+                </span>
               </a>
             ))}
-          </div>
-          <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
-            <Button
-              href="#contact"
-              variant="primary"
-              size="md"
-              className="w-full"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Get in Touch
-            </Button>
-            <Button
-              href="#projects"
-              variant="outline"
-              size="md"
-              className="w-full"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Explore Projects
-            </Button>
+          </nav>
+
+          <div className="pt-6 border-t border-white/10 space-y-3">
+            <div className="flex items-center justify-between text-xs font-mono text-editorial-secondary mb-2">
+              <span>Location</span>
+              <span className="text-editorial-primary">Indore, India</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                href="#contact"
+                variant="outline"
+                size="md"
+                className="w-full justify-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Resume
+              </Button>
+              <Button
+                href="#contact"
+                variant="primary"
+                size="md"
+                className="w-full justify-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Let&apos;s Talk
+              </Button>
+            </div>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
-

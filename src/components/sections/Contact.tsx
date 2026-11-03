@@ -11,11 +11,10 @@ import {
   CheckCircle2,
   AlertCircle,
   Clock,
-  Sparkles,
+  ArrowUpRight,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -52,7 +51,7 @@ export function Contact() {
       const resData = await response.json();
 
       if (!response.ok) {
-        throw new Error(resData.error || 'Failed to send message.');
+        throw new Error(resData.error || 'Failed to dispatch transmission.');
       }
 
       setStatus('success');
@@ -64,46 +63,49 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative border-t border-white/[0.06]">
+    <section id="contact" className="py-28 relative border-b border-canvas-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Initiate Collaboration"
-          title="Have an Idea? Let's Engineer Something Great."
-          subtitle="Whether you need end-to-end full-stack development, software architecture consulting, or AI/ML integrations, let's discuss your technical goals."
+          badge="Direct Communication"
+          title="Have a Vision? Let's Engineer It."
+          subtitle="Whether you are architecting a high-throughput platform, integrating production AI models, or seeking a technical leader, let's connect."
         />
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Contact Details Column */}
+          {/* Left Column: Direct Links */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 rounded-2xl bg-surface border border-white/[0.08] shadow-xl space-y-6">
+            <div className="p-8 sm:p-9 rounded-2xl bg-canvas-card border border-canvas-border shadow-card-dark space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-white tracking-tight mb-2">
-                  Direct Inquiries & Connect
+                <h3 className="text-2xl font-display font-bold text-editorial-primary tracking-tight mb-2">
+                  Direct Inquiries &amp; Network
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                  Open for technical leadership roles, software architecture engagements, and enterprise engineering projects.
+                <p className="text-xs sm:text-sm text-editorial-secondary leading-relaxed font-sans">
+                  Available for engineering leadership roles, distributed architecture consulting, and high-impact digital ventures.
                 </p>
               </div>
 
-              <div className="space-y-4 pt-2">
+              <div className="space-y-3.5 pt-2">
                 {/* LinkedIn */}
                 <a
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-surface-elevated border border-white/5 hover:border-emerald-500/40 transition-colors group"
+                  className="flex items-center justify-between p-4 rounded-xl bg-canvas-secondary border border-white/5 hover:border-accent/40 transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-all">
-                    <LinkedinIcon className="w-5 h-5" />
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent group-hover:scale-105 transition-all">
+                      <LinkedinIcon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-editorial-muted block">
+                        Professional Network
+                      </span>
+                      <span className="text-sm font-semibold text-editorial-primary group-hover:text-accent transition-colors">
+                        linkedin.com/in/rohit957
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-[11px] font-mono uppercase text-neutral-400 block">
-                      Professional Network
-                    </span>
-                    <span className="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">
-                      linkedin.com/in/rohit957
-                    </span>
-                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-editorial-muted group-hover:text-accent transition-colors" />
                 </a>
 
                 {/* GitHub */}
@@ -111,33 +113,36 @@ export function Contact() {
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-surface-elevated border border-white/5 hover:border-emerald-500/40 transition-colors group"
+                  className="flex items-center justify-between p-4 rounded-xl bg-canvas-secondary border border-white/5 hover:border-accent/40 transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-all">
-                    <GithubIcon className="w-5 h-5" />
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent group-hover:scale-105 transition-all">
+                      <GithubIcon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-editorial-muted block">
+                        Code Repositories
+                      </span>
+                      <span className="text-sm font-semibold text-editorial-primary group-hover:text-accent transition-colors">
+                        rohitsen0604-source
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-[11px] font-mono uppercase text-neutral-400 block">
-                      Code Repositories
-                    </span>
-                    <span className="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">
-                      github.com/rohitsen0604-source
-                    </span>
-                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-editorial-muted group-hover:text-accent transition-colors" />
                 </a>
 
                 {/* Email (Configurable) */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-surface-elevated border border-white/5">
-                  <div className="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center text-emerald-400">
+                <div className="flex items-center gap-3.5 p-4 rounded-xl bg-canvas-secondary border border-white/5">
+                  <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-mono uppercase text-neutral-400 block">
+                    <span className="text-[10px] font-mono uppercase text-editorial-muted block">
                       Direct Email (Configurable)
                     </span>
                     <a
                       href={`mailto:${socialLinks.email}`}
-                      className="text-sm font-semibold text-white hover:text-emerald-300 transition-colors"
+                      className="text-sm font-semibold text-editorial-primary hover:text-accent transition-colors font-mono"
                     >
                       {socialLinks.email}
                     </a>
@@ -145,50 +150,50 @@ export function Contact() {
                 </div>
 
                 {/* Location */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-surface-elevated border border-white/5">
-                  <div className="w-10 h-10 rounded-lg bg-surface border border-white/10 flex items-center justify-center text-emerald-400">
+                <div className="flex items-center gap-3.5 p-4 rounded-xl bg-canvas-secondary border border-white/5">
+                  <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-mono uppercase text-neutral-400 block">
-                      Location Base
+                    <span className="text-[10px] font-mono uppercase text-editorial-muted block">
+                      Base Location
                     </span>
-                    <span className="text-sm font-semibold text-white">
+                    <span className="text-sm font-semibold text-editorial-primary font-sans">
                       {personalInfo.location}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/[0.06] flex items-center gap-2 text-xs text-neutral-400 font-mono">
-                <Clock className="w-4 h-4 text-emerald-400" />
-                <span>Response Time: Typically within 24 business hours</span>
+              <div className="pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-editorial-secondary font-mono">
+                <Clock className="w-4 h-4 text-accent" />
+                <span>Response SLA: Within 24 hours</span>
               </div>
             </div>
           </div>
 
-          {/* Contact Form Column */}
+          {/* Right Column: Interactive Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 rounded-2xl bg-surface border border-white/[0.08] shadow-xl">
-              <h3 className="text-xl font-bold text-white tracking-tight mb-2">
-                Send a Structured Inquiry
+            <div className="p-8 sm:p-10 rounded-2xl bg-canvas-card border border-canvas-border shadow-card-dark">
+              <h3 className="text-2xl font-display font-bold text-editorial-primary tracking-tight mb-2">
+                Send a Message
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-400 mb-6">
-                Fill in the details below to discuss project scopes, engineering consultancies, or career opportunities.
+              <p className="text-xs sm:text-sm text-editorial-secondary mb-7 font-sans">
+                Fill in the details below to discuss project requirements, architecture consultancies, or engineering opportunities.
               </p>
 
               {status === 'success' ? (
-                <div className="p-6 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-center space-y-3 animate-in fade-in">
-                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-                  <h4 className="text-base font-bold text-white">
+                <div className="p-8 rounded-xl bg-accent/5 border border-accent/40 text-center space-y-3 animate-in fade-in">
+                  <CheckCircle2 className="w-12 h-12 text-accent mx-auto" />
+                  <h4 className="text-lg font-display font-bold text-editorial-primary">
                     Message Dispatched Successfully
                   </h4>
-                  <p className="text-xs sm:text-sm text-neutral-300">
-                    Thank you for reaching out. Rohit Sen will review your inquiry and get back to you shortly.
+                  <p className="text-xs sm:text-sm text-editorial-secondary font-sans max-w-md mx-auto">
+                    Thank you for reaching out. Rohit Sen will review your inquiry and get back to you promptly.
                   </p>
                   <button
                     onClick={() => setStatus('idle')}
-                    className="mt-4 text-xs font-mono text-emerald-400 underline hover:text-emerald-300"
+                    className="mt-4 text-xs font-mono text-accent underline hover:text-accent-hover"
                   >
                     Send another message
                   </button>
@@ -196,7 +201,7 @@ export function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {status === 'error' && (
-                    <div className="p-3.5 rounded-lg bg-red-950/40 border border-red-500/30 text-xs text-red-300 flex items-center gap-2">
+                    <div className="p-4 rounded-lg bg-red-950/40 border border-red-500/30 text-xs text-red-300 flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
@@ -204,8 +209,8 @@ export function Contact() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-mono uppercase tracking-wider text-neutral-300 block mb-1.5">
-                        Your Name <span className="text-emerald-400">*</span>
+                      <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
+                        Your Name <span className="text-accent">*</span>
                       </label>
                       <input
                         type="text"
@@ -213,13 +218,13 @@ export function Contact() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="e.g. Alex Henderson"
-                        className="w-full px-4 py-2.5 rounded-lg bg-surface-elevated border border-white/10 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 transition-colors"
+                        placeholder="e.g. Elena Rostova"
+                        className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-mono uppercase tracking-wider text-neutral-300 block mb-1.5">
-                        Your Email <span className="text-emerald-400">*</span>
+                      <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
+                        Your Email <span className="text-accent">*</span>
                       </label>
                       <input
                         type="email"
@@ -227,14 +232,14 @@ export function Contact() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="alex@example.com"
-                        className="w-full px-4 py-2.5 rounded-lg bg-surface-elevated border border-white/10 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 transition-colors"
+                        placeholder="elena@company.com"
+                        className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs font-mono uppercase tracking-wider text-neutral-300 block mb-1.5">
+                    <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
                       Subject
                     </label>
                     <input
@@ -242,14 +247,14 @@ export function Contact() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="Project architecture / Engineering collaboration / Hiring"
-                      className="w-full px-4 py-2.5 rounded-lg bg-surface-elevated border border-white/10 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 transition-colors"
+                      placeholder="System Architecture / Lead Engineering Role / Consultation"
+                      className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-mono uppercase tracking-wider text-neutral-300 block mb-1.5">
-                      Message Details <span className="text-emerald-400">*</span>
+                    <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
+                      Project Specifications <span className="text-accent">*</span>
                     </label>
                     <textarea
                       name="message"
@@ -257,8 +262,8 @@ export function Contact() {
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Outline your project requirements, technology stack, timeline, or engineering opportunity..."
-                      className="w-full px-4 py-2.5 rounded-lg bg-surface-elevated border border-white/10 text-white placeholder-neutral-500 text-sm focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 transition-colors resize-none"
+                      placeholder="Detail your requirements, technology stack, scope, and target timelines..."
+                      className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
                     />
                   </div>
 
@@ -267,10 +272,10 @@ export function Contact() {
                     variant="primary"
                     size="lg"
                     disabled={status === 'submitting'}
-                    className="w-full font-semibold"
+                    className="w-full justify-center"
                     icon={<Send className="w-4 h-4" />}
                   >
-                    {status === 'submitting' ? 'Transmitting Inquiries...' : 'Send Message'}
+                    {status === 'submitting' ? 'Transmitting Inquiries...' : 'Transmit Message'}
                   </Button>
                 </form>
               )}

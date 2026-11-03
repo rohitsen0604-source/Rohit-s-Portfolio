@@ -1,28 +1,36 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Space_Grotesk, Manrope, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { AmbientLight } from '@/components/ui/AmbientLight';
 import { CustomCursor } from '@/components/ui/CustomCursor';
-import { personalInfo } from '@/data/personalInfo';
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-display',
   display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   display: 'swap',
+  weight: ['400', '500'],
 });
 
 export const metadata: Metadata = {
-  title: 'Rohit Sen | Lead Software Engineer | Software Architect & AI/ML Engineer',
+  title: 'Rohit Sen — Lead Software Engineer | Architecture & Intelligent Systems',
   description:
-    'Personal portfolio of Rohit Sen — Lead Software Engineer, Full-Stack Developer, AI/ML Engineer, and Software Architect based in Indore, India. Building scalable software, production AI/ML systems, and robust backend architectures.',
+    'Award-caliber portfolio of Rohit Sen — Lead Software Engineer & Architect. Engineering ideas into intelligent digital products, distributed scalable systems, and production AI/ML architectures.',
   keywords: [
     'Rohit Sen',
     'Lead Software Engineer',
@@ -33,44 +41,36 @@ export const metadata: Metadata = {
     'FastAPI',
     'Next.js',
     'TypeScript',
-    'Machine Learning',
+    'Distributed Systems',
     'RAG Architecture',
-    'PostgreSQL',
     'Indore Developer',
   ],
   authors: [{ name: 'Rohit Sen' }],
   creator: 'Rohit Sen',
-  metadataBase: new URL('https://rohitsen.dev'),
+  metadataBase: new URL('https://rohit-sen-portfolio-eta.vercel.app/'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://rohitsen.dev',
-    title: 'Rohit Sen | Lead Software Engineer & Software Architect',
+    url: 'https://rohit-sen-portfolio-eta.vercel.app/',
+    title: 'Rohit Sen — Lead Software Engineer | Architecture & Intelligent Systems',
     description:
-      'Engineering Intelligent Digital Products. Building Scalable Software. Solving Real-World Problems.',
+      'Engineering Ideas Into Intelligent Digital Products. Building Scalable Software. Solving Real-World Problems.',
     siteName: 'Rohit Sen Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rohit Sen | Lead Software Engineer & Software Architect',
+    title: 'Rohit Sen — Lead Software Engineer',
     description:
-      'Engineering Intelligent Digital Products. Building Scalable Software. Solving Real-World Problems.',
+      'Engineering Ideas Into Intelligent Digital Products. Building Scalable Software.',
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#08090C',
+  themeColor: '#0B0C0B',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -82,8 +82,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark`}>
-      <body className="min-h-screen bg-background text-neutral-100 antialiased selection:bg-emerald-500/30 selection:text-white">
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable} dark`}
+    >
+      <body className="min-h-screen bg-canvas text-editorial-primary font-sans antialiased selection:bg-accent selection:text-canvas">
         <AmbientLight />
         <CustomCursor />
         <Navbar />
@@ -95,4 +98,3 @@ export default function RootLayout({
     </html>
   );
 }
-

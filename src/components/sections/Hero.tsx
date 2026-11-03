@@ -1,129 +1,128 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, Download, Terminal, MapPin, Sparkles, Code2, Server, Cpu } from 'lucide-react';
-import { personalInfo } from '@/data/personalInfo';
+import dynamic from 'next/dynamic';
+import { ArrowRight, ArrowUpRight, Download, Sparkles, Terminal, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { personalInfo } from '@/data/personalInfo';
+
+// Dynamic lazy import for 3D Hero component with lightweight fallback
+const Hero3DVisual = dynamic(
+  () => import('@/components/ui/Hero3DVisual').then((mod) => mod.Hero3DVisual),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[380px] sm:h-[460px] md:h-[540px] flex items-center justify-center">
+        <div className="w-48 h-48 rounded-full border border-accent/20 animate-pulse bg-accent/5" />
+      </div>
+    ),
+  }
+);
 
 export function Hero() {
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden">
-      {/* Background Grid Accent */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none" />
+    <section
+      id="hero"
+      className="relative min-h-[95vh] flex items-center pt-28 pb-16 overflow-hidden border-b border-canvas-border"
+    >
+      {/* Background Architectural Grid Pattern */}
+      <div className="absolute inset-0 bg-editorial-grid opacity-35 pointer-events-none" />
 
-      {/* Decorative gradient overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(16,185,129,0.15),transparent_70%)] pointer-events-none" />
+      {/* Atmospheric radial gradient spotlight */}
+      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[700px] h-[500px] bg-accent/[0.04] blur-[150px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Top Status & Role Pill */}
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <Badge variant="emerald" dot size="md">
-              Lead Software Engineer
-            </Badge>
-            <div className="hidden sm:flex items-center gap-1.5 text-xs text-neutral-400 bg-surface-elevated/80 border border-white/10 px-3 py-1 rounded-full font-mono">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-              <span>{personalInfo.location}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Asymmetric Editorial Typography & Presentation */}
+          <div className="lg:col-span-7 space-y-8 z-10">
+            {/* Availability Pill & Role */}
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge variant="accent" dot size="md">
+                Available for Engineering Leadership
+              </Badge>
+              <div className="flex items-center gap-1.5 text-xs font-mono text-editorial-secondary bg-canvas-card px-3 py-1 rounded-full border border-white/10">
+                <MapPin className="w-3.5 h-3.5 text-accent" />
+                <span>{personalInfo.location}</span>
+              </div>
             </div>
-          </div>
 
-          {/* Main Editorial Headline */}
-          <div className="space-y-4">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
-              Engineering{' '}
-              <span className="text-gradient-emerald">
+            {/* Master Headline: Space Grotesk Editorial Typography */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-[-0.035em] text-editorial-primary leading-[1.03]">
+              Engineering <br />
+              Ideas Into <br />
+              <span className="text-accent underline decoration-accent/30 underline-offset-8">
                 Intelligent
               </span>{' '}
-              Digital Products.
+              <br />
+              <span className="text-gradient-editorial">Digital Products.</span>
             </h1>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-semibold text-neutral-300 tracking-tight">
-              Building Scalable Software. Solving Real-World Problems.
+
+            {/* Supporting Description */}
+            <p className="max-w-xl text-base sm:text-lg md:text-xl text-editorial-secondary font-sans leading-relaxed">
+              I&apos;m <span className="text-editorial-primary font-semibold">Rohit Sen</span>, a Lead Software Engineer focused on architecting scalable applications, intelligent AI-powered systems, and modern digital products.
             </p>
-          </div>
 
-          {/* Hero Narrative Description */}
-          <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-neutral-400 font-normal leading-relaxed">
-            {personalInfo.heroDescription}
-          </p>
-
-          {/* Professional Positioning Tags */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-            {personalInfo.professionalPositioning.map((item, index) => (
-              <span
-                key={item}
-                className="text-xs font-mono px-3 py-1 rounded-md bg-surface border border-white/10 text-neutral-300 flex items-center gap-1.5 shadow-sm"
+            {/* Call to Actions */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+              <Button
+                href="#projects"
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight className="w-4 h-4" />}
               >
-                {index === 0 && <Code2 className="w-3 h-3 text-emerald-400" />}
-                {index === 1 && <Terminal className="w-3 h-3 text-emerald-400" />}
-                {index === 2 && <Cpu className="w-3 h-3 text-emerald-400" />}
-                {index === 3 && <Server className="w-3 h-3 text-emerald-400" />}
-                {item}
-              </span>
-            ))}
+                Explore My Work
+              </Button>
+              <Button
+                href="#contact"
+                variant="secondary"
+                size="lg"
+                icon={<ArrowUpRight className="w-4 h-4" />}
+              >
+                Let&apos;s Collaborate
+              </Button>
+              <Button
+                href="#contact"
+                variant="outline"
+                size="lg"
+                icon={<Download className="w-4 h-4" />}
+              >
+                Download Resume
+              </Button>
+            </div>
+
+            {/* Architectural Status Strip */}
+            <div className="pt-8 border-t border-canvas-border grid grid-cols-3 gap-4 font-mono text-xs">
+              <div>
+                <span className="text-editorial-muted uppercase tracking-wider block text-[10px]">
+                  Current Post
+                </span>
+                <span className="text-editorial-primary font-semibold">Lead Developer</span>
+                <span className="text-editorial-secondary block text-[11px]">Black Grapes Softech</span>
+              </div>
+              <div>
+                <span className="text-editorial-muted uppercase tracking-wider block text-[10px]">
+                  Engineering Scope
+                </span>
+                <span className="text-editorial-primary font-semibold">Full-Stack & AI</span>
+                <span className="text-editorial-secondary block text-[11px]">System Architecture</span>
+              </div>
+              <div>
+                <span className="text-editorial-muted uppercase tracking-wider block text-[10px]">
+                  Code Craft
+                </span>
+                <span className="text-accent font-semibold">TypeScript & Python</span>
+                <span className="text-editorial-secondary block text-[11px]">Microservices & RAG</span>
+              </div>
+            </div>
           </div>
 
-          {/* Call-to-Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4">
-            <Button
-              href="#projects"
-              variant="primary"
-              size="lg"
-              icon={<ArrowRight className="w-4 h-4" />}
-            >
-              {personalInfo.primaryCTAs.work}
-            </Button>
-            <Button
-              href="#contact"
-              variant="secondary"
-              size="lg"
-            >
-              {personalInfo.primaryCTAs.contact}
-            </Button>
-            <Button
-              href="#contact"
-              variant="outline"
-              size="lg"
-              icon={<Download className="w-4 h-4" />}
-            >
-              {personalInfo.secondaryCTA.resume}
-            </Button>
-          </div>
-
-          {/* Architectural Pillars Summary Bar */}
-          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-3 border-t border-white/[0.08] text-left">
-            <div className="p-4 rounded-xl bg-surface/60 border border-white/[0.06] backdrop-blur-sm">
-              <span className="text-[11px] font-mono uppercase text-emerald-400 font-semibold tracking-wider block mb-1">
-                Role
-              </span>
-              <p className="text-sm font-semibold text-white">Lead Software Dev</p>
-              <p className="text-xs text-neutral-400">Black Grapes Softech</p>
-            </div>
-            <div className="p-4 rounded-xl bg-surface/60 border border-white/[0.06] backdrop-blur-sm">
-              <span className="text-[11px] font-mono uppercase text-emerald-400 font-semibold tracking-wider block mb-1">
-                Core Stack
-              </span>
-              <p className="text-sm font-semibold text-white">Python • Next.js • FastAPI</p>
-              <p className="text-xs text-neutral-400">PostgreSQL • Node.js</p>
-            </div>
-            <div className="p-4 rounded-xl bg-surface/60 border border-white/[0.06] backdrop-blur-sm">
-              <span className="text-[11px] font-mono uppercase text-emerald-400 font-semibold tracking-wider block mb-1">
-                AI / ML Focus
-              </span>
-              <p className="text-sm font-semibold text-white">RAG • LangChain • LLMs</p>
-              <p className="text-xs text-neutral-400">Deep Learning & NLP</p>
-            </div>
-            <div className="p-4 rounded-xl bg-surface/60 border border-white/[0.06] backdrop-blur-sm">
-              <span className="text-[11px] font-mono uppercase text-emerald-400 font-semibold tracking-wider block mb-1">
-                Education
-              </span>
-              <p className="text-sm font-semibold text-white">B.Tech CSE (Data Science)</p>
-              <p className="text-xs text-neutral-400">Diploma Mechanical Engg.</p>
-            </div>
+          {/* Right Column: Cinematic 3D Sculpture */}
+          <div className="lg:col-span-5 relative flex items-center justify-center">
+            <Hero3DVisual />
           </div>
         </div>
       </div>
     </section>
   );
 }
-

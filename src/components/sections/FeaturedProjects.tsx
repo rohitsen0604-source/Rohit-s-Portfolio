@@ -5,132 +5,228 @@ import Link from 'next/link';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { featuredProjects } from '@/data/projects';
 import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 import {
   ArrowRight,
-  Layers,
-  Sparkles,
-  ExternalLink,
-  ChevronRight,
+  ArrowUpRight,
   CheckCircle2,
-  Code2,
+  Terminal,
+  Activity,
+  Layers,
   Cpu,
-  Workflow,
-  Radio,
+  MapPin,
+  ScanBarcode,
+  Sparkles,
 } from 'lucide-react';
 
 export function FeaturedProjects() {
-  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const categories = ['all', 'AI & Intelligence', 'Full-Stack & Mobility', 'Machine Learning & Predictive', 'Enterprise SaaS & Cloud'];
+  const categories = [
+    'all',
+    'AI & Intelligence',
+    'Full-Stack & Mobility',
+    'Machine Learning & Predictive',
+    'Enterprise SaaS & Cloud',
+  ];
 
-  const filteredProjects =
-    selectedFilter === 'all'
+  const filtered =
+    selectedCategory === 'all'
       ? featuredProjects
-      : featuredProjects.filter((p) => p.category === selectedFilter);
+      : featuredProjects.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-24 relative border-t border-white/[0.06]">
+    <section id="projects" className="py-28 relative border-b border-canvas-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Featured Engineering Works"
-          title="Engineered Products & Systems"
-          subtitle="Real-world software systems, mobility dispatch engines, applied AI workflows, and data pipelines engineered for scalability and production performance."
+          badge="Selected Works"
+          title="Featured Projects"
+          subtitle="Real-world distributed systems, mobility dispatch engines, applied AI workflows, and data pipelines engineered for enterprise scalability."
         />
 
-        {/* Project Category Filter Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-12">
+        {/* Filter Bar */}
+        <div className="flex flex-wrap items-center gap-2 mb-14">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setSelectedFilter(cat)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 ${
-                selectedFilter === cat
-                  ? 'bg-brand-emerald text-neutral-950 font-bold'
-                  : 'bg-surface border border-white/10 text-neutral-400 hover:text-white'
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 ${
+                selectedCategory === cat
+                  ? 'bg-accent text-canvas font-bold shadow-glow-accent'
+                  : 'bg-canvas-card border border-white/10 text-editorial-secondary hover:text-editorial-primary'
               }`}
             >
-              {cat === 'all' ? 'All Projects' : cat}
+              {cat === 'all' ? 'All Works' : cat}
             </button>
           ))}
         </div>
 
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => {
+        {/* Asymmetric Project Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+          {filtered.map((project, index) => {
             const isOngoing = project.status === 'In Active Development';
 
             return (
               <div
                 key={project.id}
-                className="group p-7 md:p-8 rounded-2xl bg-surface border border-white/[0.08] hover:border-emerald-500/40 shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group p-7 sm:p-9 rounded-2xl bg-canvas-card border border-canvas-border hover:border-accent/40 shadow-card-dark transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-accent/20 flex flex-col justify-between overflow-hidden"
               >
                 <div>
-                  {/* Status & Category Bar */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                    <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-                      {project.category}
-                    </span>
-                    <Badge
-                      variant={isOngoing ? 'accent' : 'emerald'}
-                      dot
-                      size="sm"
-                    >
-                      {project.status}
-                    </Badge>
+                  {/* Visual Header / Architectural Blueprint Mockup */}
+                  <div className="relative w-full h-56 sm:h-64 rounded-xl bg-canvas-secondary border border-white/10 mb-7 overflow-hidden flex flex-col justify-between p-5 group-hover:border-accent/30 transition-colors">
+                    {/* Background Grid Accent */}
+                    <div className="absolute inset-0 bg-editorial-grid opacity-20 pointer-events-none" />
+
+                    {/* Top Mockup Ribbon */}
+                    <div className="relative flex items-center justify-between z-10">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                        <span className="text-[10px] font-mono text-editorial-muted ml-2">
+                          sys://{project.slug}.architecture
+                        </span>
+                      </div>
+                      <Badge variant="accent" dot size="sm">
+                        {project.status}
+                      </Badge>
+                    </div>
+
+                    {/* Application-Specific Blueprint Diagram */}
+                    <div className="relative my-auto py-2 z-10 transition-transform duration-500 group-hover:scale-105">
+                      {project.id === 'neurohr-ai' && (
+                        <div className="p-4 rounded-lg bg-canvas-card/90 border border-white/10 space-y-2">
+                          <div className="flex items-center justify-between text-xs font-mono text-accent">
+                            <span className="flex items-center gap-1.5">
+                              <Cpu className="w-3.5 h-3.5 text-accent" /> ChromaDB RAG Pipeline
+                            </span>
+                            <span className="text-editorial-muted text-[10px]">Gemini 1.5 Flash</span>
+                          </div>
+                          <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                            <div className="h-full bg-accent w-4/5 animate-pulse" />
+                          </div>
+                          <div className="flex justify-between text-[10px] font-mono text-editorial-secondary">
+                            <span>Vector Similarity: 0.942</span>
+                            <span>Latency: 48ms</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === 'gorush' && (
+                        <div className="p-4 rounded-lg bg-canvas-card/90 border border-white/10 space-y-2">
+                          <div className="flex items-center justify-between text-xs font-mono text-accent">
+                            <span className="flex items-center gap-1.5">
+                              <MapPin className="w-3.5 h-3.5 text-accent" /> Telemetry Dispatch Node
+                            </span>
+                            <span className="text-editorial-muted text-[10px]">WebSocket Stream</span>
+                          </div>
+                          <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono">
+                            <div className="p-1.5 bg-canvas-secondary rounded border border-white/5">
+                              <span className="text-editorial-muted block">Active Fleet</span>
+                              <span className="text-editorial-primary font-bold">120+ Drivers</span>
+                            </div>
+                            <div className="p-1.5 bg-canvas-secondary rounded border border-white/5">
+                              <span className="text-editorial-muted block">Dispatch ETA</span>
+                              <span className="text-accent font-bold">&lt; 3.2 min</span>
+                            </div>
+                            <div className="p-1.5 bg-canvas-secondary rounded border border-white/5">
+                              <span className="text-editorial-muted block">Surge Index</span>
+                              <span className="text-editorial-primary font-bold">1.2x Peak</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === 'climate-change-agricultural-modeling' && (
+                        <div className="p-4 rounded-lg bg-canvas-card/90 border border-white/10 space-y-2">
+                          <div className="flex items-center justify-between text-xs font-mono text-accent">
+                            <span className="flex items-center gap-1.5">
+                              <Activity className="w-3.5 h-3.5 text-accent" /> Agro-Climatic Regression
+                            </span>
+                            <span className="text-editorial-muted text-[10px]">Random Forest</span>
+                          </div>
+                          <div className="flex items-center justify-between text-[11px] font-mono text-editorial-secondary pt-1">
+                            <span>Precipitation Deficit: -14.2%</span>
+                            <span className="text-accent">R² Score: 0.891</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === 'return-order-verification-saas' && (
+                        <div className="p-4 rounded-lg bg-canvas-card/90 border border-white/10 space-y-2">
+                          <div className="flex items-center justify-between text-xs font-mono text-accent">
+                            <span className="flex items-center gap-1.5">
+                              <ScanBarcode className="w-3.5 h-3.5 text-accent" /> Reverse Logistics API
+                            </span>
+                            <span className="text-editorial-muted text-[10px]">JWT Authenticated</span>
+                          </div>
+                          <div className="flex items-center justify-between text-[10px] font-mono text-editorial-secondary">
+                            <span>Manifest Intake: Verified</span>
+                            <span className="text-accent">SKU Match: 100%</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Bottom blueprint status */}
+                    <div className="relative flex items-center justify-between text-[10px] font-mono text-editorial-muted z-10 pt-2 border-t border-white/5">
+                      <span>CATEGORY // {project.category}</span>
+                      <span className="text-accent font-semibold flex items-center gap-1">
+                        View System Specs <ArrowUpRight className="w-3 h-3" />
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Project Title & Tagline */}
-                  <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-emerald-300 transition-colors">
+                  {/* Title & Tagline */}
+                  <h3 className="text-2xl sm:text-3xl font-display font-bold text-editorial-primary tracking-tight group-hover:text-accent transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-xs font-mono text-neutral-400 mt-1 mb-4">
+                  <p className="text-xs font-mono text-accent mt-1 mb-3.5">
                     {project.tagline}
                   </p>
 
-                  {/* Narrative Description */}
-                  <p className="text-sm text-neutral-300 leading-relaxed font-normal mb-6">
+                  {/* Description */}
+                  <p className="text-sm text-editorial-secondary leading-relaxed font-sans mb-6">
                     {project.description}
                   </p>
 
-                  {/* Key Highlights */}
-                  <div className="space-y-2 mb-6 p-4 rounded-xl bg-surface-elevated/70 border border-white/[0.04]">
-                    <span className="text-[11px] font-mono uppercase text-neutral-400 font-semibold tracking-wider block mb-1.5">
-                      Architecture & Key Features:
+                  {/* Key Capabilities */}
+                  <div className="space-y-2 mb-6 p-4 rounded-xl bg-canvas-secondary/80 border border-white/5">
+                    <span className="text-[10px] font-mono uppercase text-editorial-muted font-semibold tracking-wider block mb-1">
+                      Engineered Capabilities:
                     </span>
                     {project.keyFeatures.slice(0, 3).map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-neutral-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{feat}</span>
+                      <div key={idx} className="flex items-start gap-2 text-xs text-editorial-secondary">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
+                        <span className="leading-relaxed">{feat}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Footer: Tech Stack & Link */}
-                <div className="pt-4 border-t border-white/[0.08]">
+                {/* Footer: Tech Stack & Case Study Link */}
+                <div className="pt-4 border-t border-white/10">
                   <div className="flex flex-wrap gap-1.5 mb-5">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[11px] font-mono bg-surface-elevated text-neutral-300 px-2 py-0.5 rounded border border-white/5"
+                        className="text-[11px] font-mono bg-canvas-secondary text-editorial-secondary px-2.5 py-0.5 rounded border border-white/5"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center justify-between">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors group-hover:translate-x-1 duration-200"
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-display font-bold text-accent hover:text-accent-hover transition-colors group-hover:translate-x-1 duration-200"
                     >
-                      <span>Explore Case Study & Architecture</span>
+                      <span>View Full Case Study</span>
                       <ArrowRight className="w-4 h-4" />
                     </Link>
 
-                    <span className="text-[11px] font-mono text-neutral-500">
-                      System Case Study
+                    <span className="text-[11px] font-mono text-editorial-muted">
+                      Architecture &amp; Schematics
                     </span>
                   </div>
                 </div>
@@ -142,4 +238,3 @@ export function FeaturedProjects() {
     </section>
   );
 }
-

@@ -11,32 +11,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#08090C',
-        surface: {
-          DEFAULT: '#0D1017',
-          elevated: '#131822',
-          highlight: '#1A2130',
-          border: 'rgba(255, 255, 255, 0.08)',
+        canvas: {
+          DEFAULT: '#0B0C0B',
+          secondary: '#121512',
+          card: '#171A18',
+          elevated: '#1D211E',
+          border: 'rgba(255, 255, 255, 0.10)',
         },
-        brand: {
-          emerald: '#10B981',
-          'emerald-light': '#34D399',
-          'emerald-dark': '#059669',
-          lime: '#84CC16',
+        editorial: {
+          primary: '#F1F0E9',
+          secondary: '#92958F',
+          muted: '#636660',
         },
-        muted: {
-          DEFAULT: '#94A3B8',
-          subtle: '#64748B',
-          dark: '#334155',
+        accent: {
+          DEFAULT: '#D7FF72',
+          hover: '#C8F55C',
+          dark: '#9BB849',
+          muted: 'rgba(215, 255, 114, 0.12)',
+          border: 'rgba(215, 255, 114, 0.25)',
         },
       },
       fontFamily: {
+        display: [
+          'var(--font-display)',
+          'Space Grotesk',
+          '-apple-system',
+          'sans-serif',
+        ],
         sans: [
-          'var(--font-inter)',
+          'var(--font-sans)',
+          'Manrope',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
-          'Roboto',
           'sans-serif',
         ],
         mono: [
@@ -48,18 +55,19 @@ const config: Config = {
         ],
       },
       boxShadow: {
-        'glow-emerald': '0 0 35px -5px rgba(16, 185, 129, 0.2)',
-        'glow-emerald-lg': '0 0 60px -10px rgba(16, 185, 129, 0.3)',
-        'inner-light': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.08)',
+        'glow-accent': '0 0 30px -5px rgba(215, 255, 114, 0.25)',
+        'glow-accent-lg': '0 0 50px -10px rgba(215, 255, 114, 0.35)',
+        'card-dark': '0 20px 40px -15px rgba(0, 0, 0, 0.7)',
+        'subtle-inner': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.08)',
       },
       animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float-slow': 'float 6s ease-in-out infinite',
+        'float-slow': 'float 7s ease-in-out infinite',
+        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
     },
@@ -68,4 +76,3 @@ const config: Config = {
 };
 
 export default config;
-
