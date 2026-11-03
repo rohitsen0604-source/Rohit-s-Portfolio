@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Menu, X, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -15,15 +15,34 @@ const navItems = [
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [activeSection, setActiveSection] = useState('hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      // Auto-hide when scrolling down, reveal when scrolling up
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollYRef.current + 8) {
+          // Scrolling down -> hide navbar
+          setIsVisible(false);
+        } else if (currentScrollY < lastScrollYRef.current - 8) {
+          // Scrolling up -> show navbar
+          setIsVisible(true);
+        }
+      } else {
+        // At the very top -> always show
+        setIsVisible(true);
+      }
+
+      lastScrollYRef.current = currentScrollY;
 
       const sections = ['about', 'experience', 'projects', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 180;
+      const scrollPosition = currentScrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -32,7 +51,7 @@ export function Navbar() {
           return;
         }
       }
-      if (window.scrollY < 200) {
+      if (currentScrollY < 200) {
         setActiveSection('hero');
       }
     };
@@ -53,8 +72,12 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${
           isScrolled ? 'py-3' : 'py-5'
+        } ${
+          isVisible || mobileMenuOpen
+            ? 'translate-y-0 opacity-100 pointer-events-auto'
+            : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
