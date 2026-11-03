@@ -177,31 +177,6 @@ export function Hero3DVisual() {
       onMouseLeave={handleMouseLeave}
       className="relative w-full flex flex-col items-center select-none"
     >
-      {/* Swiss Editorial Monospace Header & Status Pill */}
-      <div className="w-full flex items-center justify-between pb-3 border-b border-swiss-border text-xs font-mono">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-swiss-orange inline-block animate-pulse" />
-          <span className="font-bold text-swiss-text tracking-wider uppercase">
-            DEVELOPER WORKSPACE
-          </span>
-          <span className="text-swiss-muted hidden sm:inline">[INTERACTIVE 3D IDE]</span>
-        </div>
-
-        {/* Live Stream Telemetry Indicator */}
-        <button
-          onClick={() => setIsLiveTelemetry((v) => !v)}
-          className="flex items-center gap-1.5 px-2.5 py-0.5 border border-swiss-border bg-white text-swiss-muted hover:text-swiss-orange hover:border-swiss-orange transition-colors text-[11px]"
-          title="Toggle live telemetry stream"
-        >
-          <span
-            className={`w-1.5 h-1.5 rounded-full ${
-              isLiveTelemetry ? 'bg-swiss-orange animate-ping' : 'bg-swiss-muted'
-            }`}
-          />
-          <span>{isLiveTelemetry ? 'SYSTEM LIVE (60 FPS)' : 'STREAM PAUSED'}</span>
-        </button>
-      </div>
-
       {/* 3D Perspective Workspace Viewport */}
       <div
         className="relative w-full h-[440px] sm:h-[500px] md:h-[540px] lg:h-[570px] flex items-center justify-center overflow-hidden py-4"
