@@ -494,7 +494,7 @@ export function Hero3DVisual() {
               ))}
               {/* Terminal Prompt with Blinking Block Cursor */}
               <div className="flex items-center gap-1 text-zinc-300 pt-1">
-                <span className="text-swiss-orange font-bold">rohit@zenvora:~$</span>
+                <span className="text-swiss-orange font-bold">rsen95759@gmail:~$</span>
                 <span className="w-2 h-3.5 bg-swiss-orange animate-pulse" />
               </div>
             </div>

@@ -155,7 +155,7 @@ export function Contact() {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono uppercase text-swiss-muted block font-bold">
-                      Direct Email (Configurable)
+                      Direct Email
                     </span>
                     <a
                       href={`mailto:${socialLinks.email}`}
