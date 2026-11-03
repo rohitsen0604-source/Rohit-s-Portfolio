@@ -8,14 +8,19 @@ import { Button } from '@/components/ui/Button';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { personalInfo } from '@/data/personalInfo';
 
-// Dynamic import for 3D Hero sculpture with fallback
+// Dynamic import for Interactive 3D Software Architecture Ecosystem with fallback
 const Hero3DVisual = dynamic(
   () => import('@/components/ui/Hero3DVisual').then((mod) => mod.Hero3DVisual),
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-[380px] sm:h-[460px] md:h-[540px] flex items-center justify-center">
-        <div className="w-48 h-48 border border-swiss-border animate-pulse bg-swiss-surface/50" />
+      <div className="w-full h-[400px] sm:h-[480px] md:h-[530px] lg:h-[560px] flex items-center justify-center border border-swiss-border bg-swiss-surface/40 p-6">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-swiss-orange border-t-transparent animate-spin" />
+          <span className="font-mono text-xs text-swiss-muted tracking-wider uppercase">
+            INITIALIZING 3D SOFTWARE ECOSYSTEM...
+          </span>
+        </div>
       </div>
     ),
   }
@@ -176,12 +181,12 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Column: Abstract 3D Sculpture */}
+          {/* Right Column: Interactive 3D Software Architecture Ecosystem */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 relative flex items-center justify-center"
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 relative flex items-center justify-center w-full"
           >
             <Hero3DVisual />
           </motion.div>
