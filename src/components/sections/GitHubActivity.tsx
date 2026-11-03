@@ -10,45 +10,45 @@ import { ArrowUpRight } from 'lucide-react';
 
 export function GitHubActivity() {
   return (
-    <section className="py-28 relative border-b border-canvas-border bg-canvas-secondary/40">
+    <section className="py-28 relative border-b border-swiss-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Open Repositories"
-          title="Development Activity"
+          badge="09 // CODE REPOSITORIES"
+          title="DEVELOPMENT ACTIVITY"
           subtitle="Continuous architectural prototypes, microservice engines, and machine learning pipelines hosted on GitHub."
         />
 
         {/* Development Metrics Overview */}
         <div className="max-w-4xl mx-auto mb-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="p-5 rounded-2xl bg-canvas-card border border-canvas-border">
-            <span className="text-[10px] font-mono uppercase text-accent block mb-1">
-              Active Repositories
+          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+            <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
+              ACTIVE REPOSITORIES
             </span>
-            <p className="text-xl font-display font-bold text-editorial-primary">
+            <p className="text-2xl font-display font-bold text-swiss-text">
               {developmentStats.activeRepositories}
             </p>
           </div>
-          <div className="p-5 rounded-2xl bg-canvas-card border border-canvas-border">
-            <span className="text-[10px] font-mono uppercase text-accent block mb-1">
-              Primary Stack
+          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+            <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
+              PRIMARY STACK
             </span>
-            <p className="text-sm font-display font-bold text-editorial-primary">
+            <p className="text-sm font-display font-bold text-swiss-text uppercase">
               Python &amp; TypeScript
             </p>
           </div>
-          <div className="p-5 rounded-2xl bg-canvas-card border border-canvas-border">
-            <span className="text-[10px] font-mono uppercase text-accent block mb-1">
-              Engineering Focus
+          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+            <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
+              ENGINEERING FOCUS
             </span>
-            <p className="text-xs font-mono font-semibold text-editorial-primary">
+            <p className="text-xs font-mono font-bold text-swiss-text uppercase">
               {developmentStats.weeklyCommitFocus}
             </p>
           </div>
-          <div className="p-5 rounded-2xl bg-canvas-card border border-canvas-border">
-            <span className="text-[10px] font-mono uppercase text-accent block mb-1">
-              Code Standards
+          <div className="p-6 bg-white border border-swiss-border shadow-swiss-card">
+            <span className="text-[10px] font-mono uppercase text-swiss-orange block mb-1 font-bold">
+              CODE STANDARDS
             </span>
-            <p className="text-xs font-mono text-editorial-primary">
+            <p className="text-xs font-mono text-swiss-text uppercase">
               CI/CD &amp; Strict Types
             </p>
           </div>
@@ -59,25 +59,25 @@ export function GitHubActivity() {
           {githubHighlights.map((item) => (
             <div
               key={item.title}
-              className="p-7 rounded-2xl bg-canvas-card border border-canvas-border hover:border-accent/40 shadow-card-dark transition-all duration-300 flex flex-col justify-between group"
+              className="p-7 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-all duration-200 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <GithubIcon className="w-4 h-4 text-accent" />
-                    <span className="font-mono text-xs text-editorial-secondary group-hover:text-accent transition-colors">
+                    <GithubIcon className="w-4 h-4 text-swiss-orange" />
+                    <span className="font-mono text-xs text-swiss-muted group-hover:text-swiss-orange transition-colors">
                       {item.repo}
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono text-editorial-muted">
+                  <span className="text-[10px] font-mono text-swiss-muted uppercase">
                     {item.lastUpdated}
                   </span>
                 </div>
 
-                <h3 className="text-base font-display font-bold text-editorial-primary mb-2 group-hover:text-accent transition-colors">
+                <h3 className="text-base font-display font-bold text-swiss-text mb-2 group-hover:text-swiss-orange transition-colors uppercase">
                   {item.title}
                 </h3>
-                <p className="text-xs text-editorial-secondary leading-relaxed font-sans mb-4">
+                <p className="text-xs text-swiss-muted leading-relaxed font-sans mb-4">
                   {item.description}
                 </p>
               </div>
@@ -87,22 +87,22 @@ export function GitHubActivity() {
                   {item.topics.map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] font-mono bg-canvas-secondary text-editorial-secondary px-2 py-0.5 rounded border border-white/5"
+                      className="text-[10px] font-mono bg-swiss-surface text-swiss-muted px-2 py-0.5 border border-swiss-border uppercase"
                     >
                       #{t}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs font-mono">
+                <div className="flex items-center justify-between pt-3 border-t border-swiss-border text-xs font-mono">
                   <div className="flex items-center gap-2">
                     <span
-                      className="w-2.5 h-2.5 rounded-full inline-block"
+                      className="w-2.5 h-2.5 inline-block"
                       style={{ backgroundColor: item.languageColor }}
                     />
-                    <span className="text-editorial-primary">{item.language}</span>
+                    <span className="text-swiss-text font-bold uppercase">{item.language}</span>
                   </div>
-                  <span className="text-editorial-muted text-[11px]">Source Architecture</span>
+                  <span className="text-swiss-muted text-[10px] uppercase">Source Code</span>
                 </div>
               </div>
             </div>

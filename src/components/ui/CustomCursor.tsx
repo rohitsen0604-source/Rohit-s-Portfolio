@@ -60,16 +60,16 @@ export function CustomCursor() {
         top: 0,
       }}
     >
-      {/* Outer subtle halo ring */}
+      {/* Outer Swiss hairline ring */}
       <div
         className={`-translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-200 ${
           isPointer
-            ? 'w-11 h-11 border-accent bg-accent/10 scale-125'
-            : 'w-7 h-7 border-accent/40 bg-transparent'
+            ? 'w-10 h-10 border-swiss-orange bg-swiss-orange/10 scale-110'
+            : 'w-7 h-7 border-swiss-text/30 bg-transparent'
         }`}
       />
-      {/* Inner precision dot */}
-      <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_10px_#D7FF72]" />
+      {/* Inner Swiss Vermilion Dot */}
+      <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-swiss-orange rounded-full" />
     </div>
   );
 }

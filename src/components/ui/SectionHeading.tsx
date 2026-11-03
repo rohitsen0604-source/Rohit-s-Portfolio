@@ -27,16 +27,17 @@ export function SectionHeading({
     >
       {badge && (
         <div className={cn('mb-4', centered ? 'flex justify-center' : '')}>
-          <Badge variant="accent" dot size="sm">
+          <span className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-swiss-orange">
+            <span className="w-2 h-2 bg-swiss-orange inline-block" />
             {badge}
-          </Badge>
+          </span>
         </div>
       )}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-[-0.03em] text-editorial-primary leading-[1.08]">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight text-swiss-text uppercase leading-[1.05]">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-5 text-base sm:text-lg md:text-xl text-editorial-secondary leading-relaxed font-sans max-w-2xl">
+        <p className="mt-5 text-base sm:text-lg md:text-xl text-swiss-muted leading-relaxed font-sans max-w-2xl font-normal">
           {subtitle}
         </p>
       )}

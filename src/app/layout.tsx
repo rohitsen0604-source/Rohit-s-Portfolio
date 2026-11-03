@@ -1,23 +1,22 @@
 import type { Metadata, Viewport } from 'next';
-import { Space_Grotesk, Manrope, JetBrains_Mono } from 'next/font/google';
+import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
-import { AmbientLight } from '@/components/ui/AmbientLight';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['500', '600', '700'],
 });
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -28,9 +27,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Rohit Sen — Lead Software Engineer | Architecture & Intelligent Systems',
+  title: 'ROHIT SEN — Lead Software Engineer & Architect | Swiss Editorial',
   description:
-    'Award-caliber portfolio of Rohit Sen — Lead Software Engineer & Architect. Engineering ideas into intelligent digital products, distributed scalable systems, and production AI/ML architectures.',
+    'Portfolio of Rohit Sen — Lead Software Engineer. Engineering scalable digital products, distributed software architectures, and production AI/ML systems.',
   keywords: [
     'Rohit Sen',
     'Lead Software Engineer',
@@ -42,8 +41,7 @@ export const metadata: Metadata = {
     'Next.js',
     'TypeScript',
     'Distributed Systems',
-    'RAG Architecture',
-    'Indore Developer',
+    'Swiss Design',
   ],
   authors: [{ name: 'Rohit Sen' }],
   creator: 'Rohit Sen',
@@ -52,16 +50,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://rohit-sen-portfolio-eta.vercel.app/',
-    title: 'Rohit Sen — Lead Software Engineer | Architecture & Intelligent Systems',
+    title: 'ROHIT SEN — Lead Software Engineer & Architect',
     description:
-      'Engineering Ideas Into Intelligent Digital Products. Building Scalable Software. Solving Real-World Problems.',
+      'I build digital products that move businesses forward. Lead Software Engineer & Architect.',
     siteName: 'Rohit Sen Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rohit Sen — Lead Software Engineer',
-    description:
-      'Engineering Ideas Into Intelligent Digital Products. Building Scalable Software.',
+    title: 'ROHIT SEN — Lead Software Engineer',
+    description: 'I build digital products that move businesses forward.',
   },
   robots: {
     index: true,
@@ -70,7 +67,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0B0C0B',
+  themeColor: '#F5F2EA',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -84,10 +81,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable} dark`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-canvas text-editorial-primary font-sans antialiased selection:bg-accent selection:text-canvas">
-        <AmbientLight />
+      <body className="min-h-screen bg-swiss-bg text-swiss-text font-sans antialiased selection:bg-swiss-orange selection:text-white">
         <CustomCursor />
         <Navbar />
         <main id="main-content" className="relative z-10">

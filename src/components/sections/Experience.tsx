@@ -29,18 +29,18 @@ export function Experience() {
   };
 
   return (
-    <section id="experience" className="py-28 relative border-b border-canvas-border">
+    <section id="experience" className="py-28 relative border-b border-swiss-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Career Trajectory"
-          title="Professional Experience"
+          badge="02 // CAREER TIMELINE"
+          title="PROFESSIONAL EXPERIENCE"
           subtitle="Verifiable track record in engineering leadership, backend microservices, software architecture, and production AI/ML systems."
         />
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Vertical central timeline connecting line */}
+          {/* Vertical central timeline connecting line in #D8D3C8 */}
           <div
-            className="absolute left-4 md:left-8 top-6 bottom-6 w-px bg-gradient-to-b from-accent via-white/15 to-transparent pointer-events-none"
+            className="absolute left-4 md:left-8 top-6 bottom-6 w-px bg-swiss-border pointer-events-none"
             aria-hidden="true"
           />
 
@@ -50,18 +50,18 @@ export function Experience() {
 
               return (
                 <div key={company.id} className="relative pl-12 md:pl-20 group">
-                  {/* Timeline Node Monogram */}
-                  <div className="absolute left-1.5 md:left-5 top-2 -translate-x-1/2 w-8 h-8 rounded-full bg-canvas-card border border-white/15 group-hover:border-accent flex items-center justify-center text-accent text-[11px] font-mono font-bold transition-all z-10 shadow-sm">
+                  {/* Subtle Orange Timeline Marker */}
+                  <div className="absolute left-1.5 md:left-5 top-2 -translate-x-1/2 w-8 h-8 bg-white border-2 border-swiss-border group-hover:border-swiss-orange flex items-center justify-center text-swiss-orange text-[11px] font-mono font-bold transition-all z-10 shadow-sm">
                     {company.companyLogoPlaceholder || 'EXP'}
                   </div>
 
-                  {/* Company Container Card */}
-                  <div className="p-6 md:p-8 rounded-2xl bg-canvas-card border border-canvas-border hover:border-white/20 transition-all shadow-card-dark">
+                  {/* Company Box */}
+                  <div className="p-6 md:p-8 bg-white border border-swiss-border hover:border-swiss-orange transition-all duration-200 shadow-swiss-card">
                     {/* Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/10">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-swiss-border">
                       <div>
                         <div className="flex flex-wrap items-center gap-2.5">
-                          <h3 className="text-xl md:text-2xl font-display font-bold text-editorial-primary tracking-tight">
+                          <h3 className="text-xl md:text-2xl font-display font-bold text-swiss-text tracking-tight uppercase">
                             {company.companyName}
                           </h3>
                           {isGrouped && (
@@ -71,25 +71,25 @@ export function Experience() {
                           )}
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-3 text-xs text-editorial-secondary mt-1 font-mono">
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-swiss-muted mt-1 font-mono">
                           <span className="flex items-center gap-1">
-                            <MapPin className="w-3.5 h-3.5 text-accent" />
+                            <MapPin className="w-3.5 h-3.5 text-swiss-orange" />
                             {company.location}
                           </span>
-                          <span className="text-editorial-muted">•</span>
-                          <span>{company.workMode}</span>
+                          <span className="text-swiss-border">•</span>
+                          <span className="uppercase">{company.workMode}</span>
                         </div>
                       </div>
 
                       {isGrouped && (
-                        <div className="text-xs font-mono text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20 self-start sm:self-auto">
+                        <div className="text-xs font-mono text-swiss-orange bg-swiss-orange-light px-3 py-1 border border-swiss-orange-border self-start sm:self-auto font-bold uppercase">
                           2 Chronological Positions
                         </div>
                       )}
                     </div>
 
-                    {/* Roles */}
-                    <div className={`mt-6 ${isGrouped ? 'space-y-8 pl-4 md:pl-6 border-l border-white/10' : 'space-y-6'}`}>
+                    {/* Roles Under Company */}
+                    <div className={`mt-6 ${isGrouped ? 'space-y-8 pl-4 md:pl-6 border-l border-swiss-border' : 'space-y-6'}`}>
                       {company.roles.map((role, rIndex) => {
                         const roleKey = `${company.id}-${rIndex}`;
                         const isExpanded = expandedRoles[roleKey] ?? false;
@@ -99,7 +99,7 @@ export function Experience() {
                             key={roleKey}
                             className={`relative ${
                               isGrouped
-                                ? 'before:absolute before:-left-[21px] md:before:-left-[29px] before:top-2 before:w-3 before:h-3 before:rounded-full before:bg-canvas-card before:border-2 before:border-accent'
+                                ? 'before:absolute before:-left-[21px] md:before:-left-[29px] before:top-2 before:w-3 before:h-3 before:bg-white before:border-2 before:border-swiss-orange'
                                 : ''
                             }`}
                           >
@@ -107,7 +107,7 @@ export function Experience() {
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5">
                               <div>
                                 <div className="flex flex-wrap items-center gap-2.5">
-                                  <h4 className="text-lg font-display font-bold text-editorial-primary">
+                                  <h4 className="text-lg font-display font-bold text-swiss-text uppercase">
                                     {role.title}
                                   </h4>
                                   {role.isCurrent && (
@@ -115,12 +115,12 @@ export function Experience() {
                                       Present
                                     </Badge>
                                   )}
-                                  <span className="text-[11px] font-mono text-editorial-secondary bg-canvas-secondary px-2.5 py-0.5 rounded border border-white/5">
+                                  <span className="text-[10px] font-mono text-swiss-muted bg-swiss-surface px-2.5 py-0.5 border border-swiss-border uppercase">
                                     {role.employmentType}
                                   </span>
                                 </div>
-                                <div className="flex items-center gap-2 text-xs text-editorial-secondary font-mono mt-1">
-                                  <Calendar className="w-3.5 h-3.5 text-accent" />
+                                <div className="flex items-center gap-2 text-xs text-swiss-muted font-mono mt-1">
+                                  <Calendar className="w-3.5 h-3.5 text-swiss-orange" />
                                   <span>{role.duration}</span>
                                 </div>
                               </div>
@@ -128,7 +128,7 @@ export function Experience() {
                               {(role.responsibilities || role.description) && (
                                 <button
                                   onClick={() => toggleRole(roleKey)}
-                                  className="inline-flex items-center gap-1 text-xs font-mono text-editorial-secondary hover:text-accent transition-colors self-start md:self-auto py-1 px-2.5 rounded bg-white/[0.02] border border-white/5 hover:border-accent/30"
+                                  className="inline-flex items-center gap-1 text-xs font-mono font-bold text-swiss-muted hover:text-swiss-orange transition-colors self-start md:self-auto py-1 px-2.5 bg-swiss-surface border border-swiss-border uppercase"
                                 >
                                   <span>{isExpanded ? 'Collapse' : 'Details'}</span>
                                   {isExpanded ? (
@@ -142,26 +142,26 @@ export function Experience() {
 
                             {/* Summary */}
                             {role.description && (
-                              <p className="mt-3 text-sm text-editorial-secondary leading-relaxed font-sans">
+                              <p className="mt-3 text-sm text-swiss-muted leading-relaxed font-sans">
                                 {role.description}
                               </p>
                             )}
 
                             {/* Expandable Key Responsibilities */}
                             {isExpanded && (
-                              <div className="mt-4 pt-4 border-t border-white/10 space-y-4 animate-in fade-in duration-200">
+                              <div className="mt-4 pt-4 border-t border-swiss-border space-y-4 animate-in fade-in duration-200">
                                 {role.responsibilities && role.responsibilities.length > 0 && (
                                   <div>
-                                    <span className="text-xs font-mono uppercase tracking-wider text-editorial-primary font-semibold mb-2.5 block">
-                                      Key Responsibilities & Deliverables
+                                    <span className="text-xs font-mono uppercase tracking-wider text-swiss-text font-bold mb-2.5 block">
+                                      Key Responsibilities &amp; Deliverables
                                     </span>
                                     <ul className="space-y-2">
                                       {role.responsibilities.map((resp, i) => (
                                         <li
                                           key={i}
-                                          className="flex items-start gap-2.5 text-xs sm:text-sm text-editorial-secondary leading-relaxed"
+                                          className="flex items-start gap-2.5 text-xs sm:text-sm text-swiss-muted leading-relaxed"
                                         >
-                                          <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                                          <CheckCircle2 className="w-4 h-4 text-swiss-orange shrink-0 mt-0.5" />
                                           <span>{resp}</span>
                                         </li>
                                       ))}
@@ -171,14 +171,14 @@ export function Experience() {
 
                                 {role.focusAreas && (
                                   <div className="pt-2">
-                                    <span className="text-xs font-mono uppercase tracking-wider text-editorial-muted mb-2 block">
+                                    <span className="text-xs font-mono uppercase tracking-wider text-swiss-muted mb-2 block font-bold">
                                       Focus Areas
                                     </span>
                                     <div className="flex flex-wrap gap-1.5">
                                       {role.focusAreas.map((area) => (
                                         <span
                                           key={area}
-                                          className="text-xs font-mono bg-canvas-secondary text-accent border border-accent/20 px-2.5 py-1 rounded"
+                                          className="text-xs font-mono bg-swiss-surface text-swiss-text border border-swiss-border px-2.5 py-1"
                                         >
                                           {area}
                                         </span>
@@ -195,7 +195,7 @@ export function Experience() {
                                 {role.skills.map((skill) => (
                                   <span
                                     key={skill}
-                                    className="text-[11px] font-mono text-editorial-secondary bg-canvas-secondary px-2 py-0.5 rounded border border-white/5"
+                                    className="text-[11px] font-mono text-swiss-muted bg-swiss-surface px-2 py-0.5 border border-swiss-border uppercase"
                                   >
                                     {skill}
                                   </span>

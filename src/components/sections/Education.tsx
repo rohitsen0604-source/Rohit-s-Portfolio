@@ -6,11 +6,11 @@ import { Badge } from '@/components/ui/Badge';
 
 export function Education() {
   return (
-    <section id="education" className="py-28 relative border-b border-canvas-border">
+    <section id="education" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Academic Background"
-          title="Education"
+          badge="06 // ACADEMICS"
+          title="EDUCATION"
           subtitle="Foundational engineering qualifications bridging computer science theory, predictive data science, and analytical mechanical principles."
         />
 
@@ -18,11 +18,11 @@ export function Education() {
           {educationList.map((edu) => (
             <div
               key={edu.id}
-              className="p-8 rounded-2xl bg-canvas-card border border-canvas-border hover:border-accent/40 shadow-card-dark transition-all duration-300 flex flex-col justify-between group"
+              className="p-8 bg-white border border-swiss-border hover:border-swiss-orange shadow-swiss-card transition-all duration-200 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-canvas-secondary border border-white/10 flex items-center justify-center text-accent group-hover:scale-105 transition-all">
+                  <div className="w-12 h-12 bg-swiss-surface border border-swiss-border flex items-center justify-center text-swiss-orange group-hover:border-swiss-orange transition-all">
                     <GraduationCap className="w-6 h-6" />
                   </div>
                   {edu.highlight && (
@@ -32,20 +32,20 @@ export function Education() {
                   )}
                 </div>
 
-                <h3 className="text-xl font-display font-bold text-editorial-primary tracking-tight mb-1.5 group-hover:text-accent transition-colors">
+                <h3 className="text-xl font-display font-bold text-swiss-text tracking-tight mb-1.5 group-hover:text-swiss-orange transition-colors uppercase">
                   {edu.degree}
                 </h3>
-                <p className="text-sm font-semibold text-accent font-mono mb-4">
+                <p className="text-sm font-bold text-swiss-orange font-mono mb-4 uppercase">
                   {edu.field}
                 </p>
-                <p className="text-xs sm:text-sm text-editorial-secondary leading-relaxed font-sans">
+                <p className="text-xs sm:text-sm text-swiss-muted leading-relaxed font-sans">
                   {edu.description}
                 </p>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-editorial-muted">
-                <span>Academic Qualification</span>
-                <span className="text-editorial-secondary">{edu.duration}</span>
+              <div className="mt-8 pt-4 border-t border-swiss-border flex items-center justify-between text-xs font-mono text-swiss-muted uppercase">
+                <span>ACADEMIC QUALIFICATION</span>
+                <span className="text-swiss-text font-bold">{edu.duration}</span>
               </div>
             </div>
           ))}

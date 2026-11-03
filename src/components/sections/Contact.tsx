@@ -51,7 +51,7 @@ export function Contact() {
       const resData = await response.json();
 
       if (!response.ok) {
-        throw new Error(resData.error || 'Failed to dispatch transmission.');
+        throw new Error(resData.error || 'Failed to dispatch inquiry.');
       }
 
       setStatus('success');
@@ -63,49 +63,49 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 relative border-b border-canvas-border">
+    <section id="contact" className="py-28 relative border-b border-swiss-border bg-swiss-surface/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Direct Communication"
-          title="Have a Vision? Let's Engineer It."
-          subtitle="Whether you are architecting a high-throughput platform, integrating production AI models, or seeking a technical leader, let's connect."
+          badge="10 // COLLABORATE"
+          title="LET'S BUILD SOMETHING MEANINGFUL."
+          subtitle="Whether you are architecting a high-throughput platform, integrating production AI models, or seeking engineering leadership, let's discuss your vision."
         />
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Links */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 sm:p-9 rounded-2xl bg-canvas-card border border-canvas-border shadow-card-dark space-y-6">
+            <div className="p-8 sm:p-9 bg-white border border-swiss-border shadow-swiss-card space-y-6">
               <div>
-                <h3 className="text-2xl font-display font-bold text-editorial-primary tracking-tight mb-2">
+                <h3 className="text-2xl font-display font-bold text-swiss-text tracking-tight mb-2 uppercase">
                   Direct Inquiries &amp; Network
                 </h3>
-                <p className="text-xs sm:text-sm text-editorial-secondary leading-relaxed font-sans">
-                  Available for engineering leadership roles, distributed architecture consulting, and high-impact digital ventures.
+                <p className="text-xs sm:text-sm text-swiss-muted leading-relaxed font-sans">
+                  Open for technical leadership roles, distributed software architecture consultancies, and high-impact digital ventures.
                 </p>
               </div>
 
-              <div className="space-y-3.5 pt-2">
+              <div className="space-y-3 pt-2">
                 {/* LinkedIn */}
                 <a
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-xl bg-canvas-secondary border border-white/5 hover:border-accent/40 transition-colors group"
+                  className="flex items-center justify-between p-4 bg-swiss-surface border border-swiss-border hover:border-swiss-orange transition-colors group"
                 >
                   <div className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent group-hover:scale-105 transition-all">
+                    <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange group-hover:border-swiss-orange transition-all">
                       <LinkedinIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono uppercase text-editorial-muted block">
+                      <span className="text-[10px] font-mono uppercase text-swiss-muted block font-bold">
                         Professional Network
                       </span>
-                      <span className="text-sm font-semibold text-editorial-primary group-hover:text-accent transition-colors">
+                      <span className="text-sm font-semibold text-swiss-text group-hover:text-swiss-orange transition-colors">
                         linkedin.com/in/rohit957
                       </span>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-editorial-muted group-hover:text-accent transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-colors" />
                 </a>
 
                 {/* GitHub */}
@@ -113,36 +113,36 @@ export function Contact() {
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-xl bg-canvas-secondary border border-white/5 hover:border-accent/40 transition-colors group"
+                  className="flex items-center justify-between p-4 bg-swiss-surface border border-swiss-border hover:border-swiss-orange transition-colors group"
                 >
                   <div className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent group-hover:scale-105 transition-all">
+                    <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange group-hover:border-swiss-orange transition-all">
                       <GithubIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono uppercase text-editorial-muted block">
+                      <span className="text-[10px] font-mono uppercase text-swiss-muted block font-bold">
                         Code Repositories
                       </span>
-                      <span className="text-sm font-semibold text-editorial-primary group-hover:text-accent transition-colors">
+                      <span className="text-sm font-semibold text-swiss-text group-hover:text-swiss-orange transition-colors">
                         rohitsen0604-source
                       </span>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-editorial-muted group-hover:text-accent transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-colors" />
                 </a>
 
                 {/* Email (Configurable) */}
-                <div className="flex items-center gap-3.5 p-4 rounded-xl bg-canvas-secondary border border-white/5">
-                  <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent">
+                <div className="flex items-center gap-3.5 p-4 bg-swiss-surface border border-swiss-border">
+                  <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase text-editorial-muted block">
+                    <span className="text-[10px] font-mono uppercase text-swiss-muted block font-bold">
                       Direct Email (Configurable)
                     </span>
                     <a
                       href={`mailto:${socialLinks.email}`}
-                      className="text-sm font-semibold text-editorial-primary hover:text-accent transition-colors font-mono"
+                      className="text-sm font-semibold text-swiss-text hover:text-swiss-orange transition-colors font-mono"
                     >
                       {socialLinks.email}
                     </a>
@@ -150,50 +150,50 @@ export function Contact() {
                 </div>
 
                 {/* Location */}
-                <div className="flex items-center gap-3.5 p-4 rounded-xl bg-canvas-secondary border border-white/5">
-                  <div className="w-10 h-10 rounded-lg bg-canvas-card border border-white/10 flex items-center justify-center text-accent">
+                <div className="flex items-center gap-3.5 p-4 bg-swiss-surface border border-swiss-border">
+                  <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase text-editorial-muted block">
+                    <span className="text-[10px] font-mono uppercase text-swiss-muted block font-bold">
                       Base Location
                     </span>
-                    <span className="text-sm font-semibold text-editorial-primary font-sans">
+                    <span className="text-sm font-semibold text-swiss-text font-sans">
                       {personalInfo.location}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-editorial-secondary font-mono">
-                <Clock className="w-4 h-4 text-accent" />
-                <span>Response SLA: Within 24 hours</span>
+              <div className="pt-4 border-t border-swiss-border flex items-center gap-2 text-xs text-swiss-muted font-mono">
+                <Clock className="w-4 h-4 text-swiss-orange" />
+                <span>Response SLA: Within 24 business hours</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Interactive Form */}
+          {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-2xl bg-canvas-card border border-canvas-border shadow-card-dark">
-              <h3 className="text-2xl font-display font-bold text-editorial-primary tracking-tight mb-2">
-                Send a Message
+            <div className="p-8 sm:p-10 bg-white border border-swiss-border shadow-swiss-card">
+              <h3 className="text-2xl font-display font-bold text-swiss-text tracking-tight mb-2 uppercase">
+                Send a Structured Message
               </h3>
-              <p className="text-xs sm:text-sm text-editorial-secondary mb-7 font-sans">
+              <p className="text-xs sm:text-sm text-swiss-muted mb-7 font-sans">
                 Fill in the details below to discuss project requirements, architecture consultancies, or engineering opportunities.
               </p>
 
               {status === 'success' ? (
-                <div className="p-8 rounded-xl bg-accent/5 border border-accent/40 text-center space-y-3 animate-in fade-in">
-                  <CheckCircle2 className="w-12 h-12 text-accent mx-auto" />
-                  <h4 className="text-lg font-display font-bold text-editorial-primary">
+                <div className="p-8 bg-swiss-orange-light border border-swiss-orange text-center space-y-3 animate-in fade-in">
+                  <CheckCircle2 className="w-12 h-12 text-swiss-orange mx-auto" />
+                  <h4 className="text-lg font-display font-bold text-swiss-text uppercase">
                     Message Dispatched Successfully
                   </h4>
-                  <p className="text-xs sm:text-sm text-editorial-secondary font-sans max-w-md mx-auto">
+                  <p className="text-xs sm:text-sm text-swiss-muted font-sans max-w-md mx-auto">
                     Thank you for reaching out. Rohit Sen will review your inquiry and get back to you promptly.
                   </p>
                   <button
                     onClick={() => setStatus('idle')}
-                    className="mt-4 text-xs font-mono text-accent underline hover:text-accent-hover"
+                    className="mt-4 text-xs font-mono text-swiss-orange underline hover:text-swiss-orange-hover font-bold uppercase"
                   >
                     Send another message
                   </button>
@@ -201,16 +201,16 @@ export function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {status === 'error' && (
-                    <div className="p-4 rounded-lg bg-red-950/40 border border-red-500/30 text-xs text-red-300 flex items-center gap-2">
-                      <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+                    <div className="p-4 bg-red-50 border border-red-300 text-xs text-red-700 flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
                   )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
-                        Your Name <span className="text-accent">*</span>
+                      <label className="text-xs font-mono uppercase tracking-wider text-swiss-text font-bold block mb-1.5">
+                        Your Name <span className="text-swiss-orange">*</span>
                       </label>
                       <input
                         type="text"
@@ -219,12 +219,12 @@ export function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="e.g. Elena Rostova"
-                        className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                        className="w-full px-4 py-3 bg-swiss-surface border border-swiss-border text-swiss-text placeholder-swiss-muted text-sm focus:outline-none focus:border-swiss-orange focus:bg-white transition-colors rounded-none"
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
-                        Your Email <span className="text-accent">*</span>
+                      <label className="text-xs font-mono uppercase tracking-wider text-swiss-text font-bold block mb-1.5">
+                        Your Email <span className="text-swiss-orange">*</span>
                       </label>
                       <input
                         type="email"
@@ -233,13 +233,13 @@ export function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="elena@company.com"
-                        className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                        className="w-full px-4 py-3 bg-swiss-surface border border-swiss-border text-swiss-text placeholder-swiss-muted text-sm focus:outline-none focus:border-swiss-orange focus:bg-white transition-colors rounded-none"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
+                    <label className="text-xs font-mono uppercase tracking-wider text-swiss-text font-bold block mb-1.5">
                       Subject
                     </label>
                     <input
@@ -248,13 +248,13 @@ export function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="System Architecture / Lead Engineering Role / Consultation"
-                      className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      className="w-full px-4 py-3 bg-swiss-surface border border-swiss-border text-swiss-text placeholder-swiss-muted text-sm focus:outline-none focus:border-swiss-orange focus:bg-white transition-colors rounded-none"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-mono uppercase tracking-wider text-editorial-secondary block mb-1.5">
-                      Project Specifications <span className="text-accent">*</span>
+                    <label className="text-xs font-mono uppercase tracking-wider text-swiss-text font-bold block mb-1.5">
+                      Project Specifications <span className="text-swiss-orange">*</span>
                     </label>
                     <textarea
                       name="message"
@@ -263,7 +263,7 @@ export function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Detail your requirements, technology stack, scope, and target timelines..."
-                      className="w-full px-4 py-3 rounded-xl bg-canvas-secondary border border-white/10 text-editorial-primary placeholder-editorial-muted text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-swiss-surface border border-swiss-border text-swiss-text placeholder-swiss-muted text-sm focus:outline-none focus:border-swiss-orange focus:bg-white transition-colors resize-none rounded-none"
                     />
                   </div>
 

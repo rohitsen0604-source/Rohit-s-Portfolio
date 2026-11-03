@@ -16,21 +16,21 @@ export function Badge({
   ...props
 }: BadgeProps) {
   const variantStyles = {
-    default: 'bg-canvas-card text-editorial-primary border border-white/10',
-    accent: 'bg-accent-muted text-accent border border-accent-border',
-    outline: 'bg-transparent text-editorial-secondary border border-white/10',
-    neutral: 'bg-canvas-secondary text-editorial-secondary border border-white/5',
+    default: 'bg-swiss-surface text-swiss-text border border-swiss-border',
+    accent: 'bg-swiss-orange-light text-swiss-orange border border-swiss-orange-border',
+    outline: 'bg-white text-swiss-text border border-swiss-border',
+    neutral: 'bg-swiss-surface text-swiss-muted border border-swiss-border',
   };
 
   const sizeStyles = {
-    sm: 'text-[11px] font-mono px-2.5 py-0.5 tracking-wider uppercase',
+    sm: 'text-[10px] font-mono px-2.5 py-0.5 tracking-wider uppercase',
     md: 'text-xs font-mono px-3 py-1 tracking-wider uppercase',
   };
 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-2 rounded-full font-medium transition-colors',
+        'inline-flex items-center gap-2 font-medium transition-colors select-none',
         variantStyles[variant],
         sizeStyles[size],
         className
@@ -42,8 +42,8 @@ export function Badge({
           className={cn(
             'inline-block h-1.5 w-1.5 rounded-full',
             variant === 'accent'
-              ? 'bg-accent shadow-[0_0_8px_#D7FF72] animate-pulse'
-              : 'bg-editorial-secondary'
+              ? 'bg-swiss-orange'
+              : 'bg-swiss-text'
           )}
         />
       )}

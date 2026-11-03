@@ -2,19 +2,18 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { ArrowRight, ArrowUpRight, Download, Sparkles, Terminal, MapPin } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { personalInfo } from '@/data/personalInfo';
 
-// Dynamic lazy import for 3D Hero component with lightweight fallback
+// Dynamic import for 3D Hero sculpture with fallback
 const Hero3DVisual = dynamic(
   () => import('@/components/ui/Hero3DVisual').then((mod) => mod.Hero3DVisual),
   {
     ssr: false,
     loading: () => (
       <div className="w-full h-[380px] sm:h-[460px] md:h-[540px] flex items-center justify-center">
-        <div className="w-48 h-48 rounded-full border border-accent/20 animate-pulse bg-accent/5" />
+        <div className="w-48 h-48 border border-swiss-border animate-pulse bg-swiss-surface/50" />
       </div>
     ),
   }
@@ -24,46 +23,44 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[95vh] flex items-center pt-28 pb-16 overflow-hidden border-b border-canvas-border"
+      className="relative min-h-[92vh] flex items-center pt-28 pb-16 overflow-hidden border-b border-swiss-border"
     >
-      {/* Background Architectural Grid Pattern */}
-      <div className="absolute inset-0 bg-editorial-grid opacity-35 pointer-events-none" />
-
-      {/* Atmospheric radial gradient spotlight */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[700px] h-[500px] bg-accent/[0.04] blur-[150px] pointer-events-none" />
+      {/* Background Swiss Architectural Grid Pattern */}
+      <div className="absolute inset-0 bg-swiss-grid opacity-35 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Asymmetric Editorial Typography & Presentation */}
-          <div className="lg:col-span-7 space-y-8 z-10">
-            {/* Availability Pill & Role */}
+          {/* Left Column: Swiss Editorial Typography & CTAs */}
+          <div className="lg:col-span-7 space-y-7 z-10">
+            {/* Label & Status Pill */}
             <div className="flex flex-wrap items-center gap-3">
-              <Badge variant="accent" dot size="md">
-                Available for Engineering Leadership
-              </Badge>
-              <div className="flex items-center gap-1.5 text-xs font-mono text-editorial-secondary bg-canvas-card px-3 py-1 rounded-full border border-white/10">
-                <MapPin className="w-3.5 h-3.5 text-accent" />
-                <span>{personalInfo.location}</span>
+              <span className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-swiss-orange uppercase bg-swiss-orange-light px-3 py-1 border border-swiss-orange-border">
+                <span className="w-2 h-2 bg-swiss-orange inline-block" />
+                LEAD SOFTWARE ENGINEER
+              </span>
+              <div className="flex items-center gap-1.5 text-xs font-mono text-swiss-muted bg-white px-3 py-1 border border-swiss-border">
+                <MapPin className="w-3.5 h-3.5 text-swiss-orange" />
+                <span className="uppercase">{personalInfo.location}</span>
               </div>
             </div>
 
-            {/* Master Headline: Space Grotesk Editorial Typography */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-[-0.035em] text-editorial-primary leading-[1.03]">
-              Engineering <br />
-              Ideas Into <br />
-              <span className="text-accent underline decoration-accent/30 underline-offset-8">
-                Intelligent
+            {/* Main Editorial Heading */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight text-swiss-text uppercase leading-[1.02]">
+              I BUILD DIGITAL <br />
+              PRODUCTS THAT <br />
+              <span className="text-swiss-orange underline decoration-swiss-orange/30 underline-offset-8">
+                MOVE BUSINESSES
               </span>{' '}
               <br />
-              <span className="text-gradient-editorial">Digital Products.</span>
+              FORWARD.
             </h1>
 
-            {/* Supporting Description */}
-            <p className="max-w-xl text-base sm:text-lg md:text-xl text-editorial-secondary font-sans leading-relaxed">
-              I&apos;m <span className="text-editorial-primary font-semibold">Rohit Sen</span>, a Lead Software Engineer focused on architecting scalable applications, intelligent AI-powered systems, and modern digital products.
+            {/* Short Professional Introduction */}
+            <p className="max-w-xl text-base sm:text-lg md:text-xl text-swiss-muted font-sans leading-relaxed">
+              I&apos;m <span className="text-swiss-text font-bold">Rohit Sen</span>, a Lead Software Engineer and Architect focused on engineering scalable applications, intelligent AI-powered systems, and modern digital products.
             </p>
 
-            {/* Call to Actions */}
+            {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <Button
                 href="#projects"
@@ -79,45 +76,37 @@ export function Hero() {
                 size="lg"
                 icon={<ArrowUpRight className="w-4 h-4" />}
               >
-                Let&apos;s Collaborate
-              </Button>
-              <Button
-                href="#contact"
-                variant="outline"
-                size="lg"
-                icon={<Download className="w-4 h-4" />}
-              >
-                Download Resume
+                Let&apos;s Work Together
               </Button>
             </div>
 
-            {/* Architectural Status Strip */}
-            <div className="pt-8 border-t border-canvas-border grid grid-cols-3 gap-4 font-mono text-xs">
+            {/* Editorial Status Strip */}
+            <div className="pt-8 border-t border-swiss-border grid grid-cols-3 gap-4 font-mono text-xs">
               <div>
-                <span className="text-editorial-muted uppercase tracking-wider block text-[10px]">
-                  Current Post
+                <span className="text-swiss-muted uppercase tracking-wider block text-[10px]">
+                  POST
                 </span>
-                <span className="text-editorial-primary font-semibold">Lead Developer</span>
-                <span className="text-editorial-secondary block text-[11px]">Black Grapes Softech</span>
+                <span className="text-swiss-text font-bold">Lead Developer</span>
+                <span className="text-swiss-muted block text-[11px]">Black Grapes Softech</span>
               </div>
               <div>
-                <span className="text-editorial-muted uppercase tracking-wider block text-[10px]">
-                  Engineering Scope
+                <span className="text-swiss-muted uppercase tracking-wider block text-[10px]">
+                  DISCIPLINE
                 </span>
-                <span className="text-editorial-primary font-semibold">Full-Stack & AI</span>
-                <span className="text-editorial-secondary block text-[11px]">System Architecture</span>
+                <span className="text-swiss-text font-bold">Full-Stack &amp; AI</span>
+                <span className="text-swiss-muted block text-[11px]">Software Architecture</span>
               </div>
               <div>
-                <span className="text-editorial-muted uppercase tracking-wider block text-[10px]">
-                  Code Craft
+                <span className="text-swiss-muted uppercase tracking-wider block text-[10px]">
+                  AVAILABILITY
                 </span>
-                <span className="text-accent font-semibold">TypeScript & Python</span>
-                <span className="text-editorial-secondary block text-[11px]">Microservices & RAG</span>
+                <span className="text-swiss-orange font-bold">Open for Q4</span>
+                <span className="text-swiss-muted block text-[11px]">Engineering Projects</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Cinematic 3D Sculpture */}
+          {/* Right Column: Abstract 3D Architecture Visual */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
             <Hero3DVisual />
           </div>

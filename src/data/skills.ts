@@ -3,7 +3,7 @@ import { SkillCategory } from '@/types';
 export const skillCategories: SkillCategory[] = [
   {
     id: 'backend',
-    name: 'Backend Engineering',
+    name: 'Programming & Backend',
     description: 'Scalable distributed architectures, high-performance microservices, and robust RESTful APIs.',
     skills: [
       { name: 'Python', highlight: true },
@@ -47,7 +47,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     id: 'database',
-    name: 'Database Architecture',
+    name: 'Databases',
     description: 'Relational data modeling, ACID compliance, caching strategies, and NoSQL document stores.',
     skills: [
       { name: 'PostgreSQL', highlight: true },
