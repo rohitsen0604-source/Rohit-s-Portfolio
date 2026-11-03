@@ -1,0 +1,88 @@
+import { SkillCategory } from '@/types';
+
+export const skillCategories: SkillCategory[] = [
+  {
+    id: 'backend',
+    name: 'Backend Engineering',
+    description: 'Scalable distributed architectures, high-performance microservices, and robust RESTful APIs.',
+    skills: [
+      { name: 'Python', highlight: true },
+      { name: 'FastAPI', highlight: true },
+      { name: 'Node.js', highlight: true },
+      { name: 'REST APIs', highlight: true },
+      { name: 'Django' },
+      { name: 'Flask' },
+    ],
+  },
+  {
+    id: 'aiml',
+    name: 'AI & Machine Learning',
+    description: 'Production-ready ML systems, deep neural networks, LLM fine-tuning, and RAG pipelines.',
+    skills: [
+      { name: 'Machine Learning', highlight: true },
+      { name: 'Deep Learning', highlight: true },
+      { name: 'RAG Architecture', highlight: true },
+      { name: 'LangChain', highlight: true },
+      { name: 'Hugging Face' },
+      { name: 'PyTorch' },
+      { name: 'TensorFlow' },
+      { name: 'Scikit-learn' },
+      { name: 'NLP', highlight: true },
+      { name: 'Computer Vision' },
+    ],
+  },
+  {
+    id: 'frontend',
+    name: 'Frontend Development',
+    description: 'Pixel-perfect, responsive, accessible, and high-performance digital interfaces.',
+    skills: [
+      { name: 'React.js', highlight: true },
+      { name: 'Next.js', highlight: true },
+      { name: 'TypeScript', highlight: true },
+      { name: 'Tailwind CSS', highlight: true },
+      { name: 'JavaScript' },
+      { name: 'HTML' },
+      { name: 'CSS' },
+    ],
+  },
+  {
+    id: 'database',
+    name: 'Database Architecture',
+    description: 'Relational data modeling, ACID compliance, caching strategies, and NoSQL document stores.',
+    skills: [
+      { name: 'PostgreSQL', highlight: true },
+      { name: 'MongoDB', highlight: true },
+      { name: 'Redis', highlight: true },
+      { name: 'SQL', highlight: true },
+      { name: 'MySQL' },
+    ],
+  },
+  {
+    id: 'devops',
+    name: 'Cloud & DevOps',
+    description: 'Containerized infrastructure, orchestrated deployments, and automated CI/CD pipelines.',
+    skills: [
+      { name: 'Docker', highlight: true },
+      { name: 'Kubernetes' },
+      { name: 'AWS', highlight: true },
+      { name: 'Azure' },
+      { name: 'CI/CD', highlight: true },
+      { name: 'Git & GitHub', highlight: true },
+      { name: 'Jenkins' },
+      { name: 'Terraform' },
+    ],
+  },
+  {
+    id: 'analytics',
+    name: 'Data Analytics & Insights',
+    description: 'Statistical exploratory analysis, automated data workflows, and executive BI dashboards.',
+    skills: [
+      { name: 'Pandas', highlight: true },
+      { name: 'NumPy', highlight: true },
+      { name: 'Power BI', highlight: true },
+      { name: 'SQL Analytics' },
+      { name: 'Excel' },
+      { name: 'Tableau' },
+    ],
+  },
+];
