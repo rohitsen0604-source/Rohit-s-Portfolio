@@ -41,3 +41,4 @@ export function Magnetic({ children, strength = 0.35, className }: MagneticProps
     </motion.div>
   );
 }
+
