@@ -104,7 +104,8 @@ export function Navbar() {
             {/* Right: Actions */}
             <div className="hidden md:flex items-center gap-3">
               <Button
-                href="#contact"
+                href="/Rohit_Sen_Resume.pdf"
+                download="Rohit_Sen_Resume.pdf"
                 variant="outline"
                 size="sm"
                 icon={<FileText className="w-3.5 h-3.5" />}
@@ -175,7 +176,8 @@ export function Navbar() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <Button
-                href="#contact"
+                href="/Rohit_Sen_Resume.pdf"
+                download="Rohit_Sen_Resume.pdf"
                 variant="outline"
                 size="md"
                 className="w-full justify-center"

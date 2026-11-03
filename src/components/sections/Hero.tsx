@@ -3,7 +3,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MapPin, Download } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { personalInfo } from '@/data/personalInfo';
@@ -146,6 +146,18 @@ export function Hero() {
                   icon={<ArrowUpRight className="w-4 h-4" />}
                 >
                   Let&apos;s Work Together
+                </Button>
+              </Magnetic>
+
+              <Magnetic strength={0.25}>
+                <Button
+                  href="/Rohit_Sen_Resume.pdf"
+                  download="Rohit_Sen_Resume.pdf"
+                  variant="outline"
+                  size="lg"
+                  icon={<Download className="w-4 h-4" />}
+                >
+                  Resume
                 </Button>
               </Magnetic>
             </motion.div>

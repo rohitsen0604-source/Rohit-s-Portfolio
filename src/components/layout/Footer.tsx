@@ -84,6 +84,17 @@ export function Footer() {
                   Contact
                 </a>
               </li>
+              <li className="pt-1">
+                <a
+                  href="/Rohit_Sen_Resume.pdf"
+                  download="Rohit_Sen_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-swiss-orange font-semibold hover:underline transition-colors inline-flex items-center gap-1 font-mono text-xs uppercase"
+                >
+                  Resume (PDF) ↓
+                </a>
+              </li>
             </ul>
           </div>
 

@@ -7,6 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   isExternal?: boolean;
+  download?: boolean | string;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
 }
@@ -18,6 +19,7 @@ export function Button({
   size = 'md',
   href,
   isExternal = false,
+  download,
   icon,
   iconPosition = 'right',
   ...props
@@ -63,12 +65,13 @@ export function Button({
   const combinedClasses = cn(baseStyles, variantStyles[variant], sizeStyles[size], className);
 
   if (href) {
-    if (isExternal) {
+    if (download || isExternal) {
       return (
         <a
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={isExternal || download ? '_blank' : undefined}
+          rel={isExternal || download ? 'noopener noreferrer' : undefined}
+          download={download}
           className={combinedClasses}
         >
           {content}

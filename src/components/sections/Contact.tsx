@@ -13,6 +13,7 @@ import {
   AlertCircle,
   Clock,
   ArrowUpRight,
+  FileDown,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
 import { Button } from '@/components/ui/Button';
@@ -148,7 +149,7 @@ export function Contact() {
                   <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
 
-                {/* Email (Configurable) */}
+                {/* Direct Email */}
                 <div className="flex items-center gap-3.5 p-4 bg-swiss-surface border border-swiss-border">
                   <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange">
                     <Mail className="w-5 h-5" />
@@ -165,6 +166,30 @@ export function Contact() {
                     </a>
                   </div>
                 </div>
+
+                {/* Official Resume Download */}
+                <a
+                  href="/Rohit_Sen_Resume.pdf"
+                  download="Rohit_Sen_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-4 bg-swiss-surface border border-swiss-border hover:border-swiss-orange transition-colors group cursor-pointer"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 bg-white border border-swiss-border flex items-center justify-center text-swiss-orange group-hover:bg-swiss-orange group-hover:text-white transition-colors">
+                      <FileDown className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-swiss-muted block font-bold">
+                        Official Curriculum Vitae
+                      </span>
+                      <span className="text-sm font-semibold text-swiss-text group-hover:text-swiss-orange transition-colors font-mono">
+                        Rohit_Sen_Resume.pdf
+                      </span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-swiss-muted group-hover:text-swiss-orange transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
 
                 {/* Location */}
                 <div className="flex items-center gap-3.5 p-4 bg-swiss-surface border border-swiss-border">
